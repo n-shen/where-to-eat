@@ -6,7 +6,11 @@ const SearchForm = () => {
     const baseURL = "";
     // const { dispatch } = useCustomizesContext();
 
-    const [title, setTitle] = useState("");
+    const [keyword, setKeyword] = useState("");
+    const [distance, setDistance] = useState(0);
+    const [category, setCategory] = useState("");
+    const [location, setLocation] = useState("");
+    const [autodetect, setAutodetect] = useState(false);
     const [description, setDescription] = useState(null);
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
@@ -22,7 +26,7 @@ const SearchForm = () => {
             .post(
                 `${baseURL}/ctm/post`,
                 {
-                    ctmTitle: title,
+                    ctmTitle: keyword,
                     ctmDescription: description,
                     ctmWords: words_array,
                 }
@@ -73,18 +77,18 @@ const SearchForm = () => {
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label
-                                htmlFor="title"
+                                htmlFor="keyword"
                                 className="block text-sm font-medium leading-6 text-gray-900"
                             >
-                                Title
+                                Keyword
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="title"
-                                    name="title"
+                                    id="keyword"
+                                    name="keyword"
                                     type="text"
                                     required
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    onChange={(e) => setKeyword(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -93,22 +97,56 @@ const SearchForm = () => {
                         <div>
                             <div className="flex items-center justify-between">
                                 <label
-                                    htmlFor="description"
+                                    htmlFor="distance"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Description (optional)
+                                    Distance
                                 </label>
                             </div>
                             <div className="mt-2">
                                 <input
-                                    id="decription"
-                                    name="description"
-                                    type="text"
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    id="distance"
+                                    name="distance"
+                                    type="number"
+                                    onChange={(e) => setDistance(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
+
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <label
+                                    htmlFor="location"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                    Location
+                                </label>
+                            </div>
+                            <div className="mt-2">
+                                <input
+                                    id="location"
+                                    name="location"
+                                    type="text"
+                                    onChange={(e) => setLocation(e.target.value)}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input
+                                    id="autodetect"
+                                    name="autodetect"
+                                    type="checkbox"
+                                    onChange={() => setAutodetect(!autodetect)}
+                                />
+                                <span className="ml-2 text-sm font-medium leading-6 text-gray-900">Auto-detect my location</span>
+                            </label>
+                        </div>
+                        
+                        
 
                         <div className="flex justify-center">
                             <button
