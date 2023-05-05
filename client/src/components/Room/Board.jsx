@@ -4,6 +4,7 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import Selection from "./Selection";
 import Intro from "./Intro";
 import Game from "./Game";
+import Cross from "./Cross";
 
 const Board = ({ rid }) => {
   const {
@@ -16,6 +17,9 @@ const Board = ({ rid }) => {
     setGameBegin,
     gameIntroBegin,
     setGameIntroBegin,
+    displayCross,
+    setDisplayCross,
+    setPartnerReady,
   } = useStateContext();
   const [socketId, setSocketId] = useState("");
   const [isCapacityFull, setIsCapacityFull] = useState(false);
@@ -26,6 +30,29 @@ const Board = ({ rid }) => {
       console.log(socket.id, "joining room", rid);
       setWaiting(true);
       socket.emit("join-room", rid);
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket.connected) {
+      socket.on("remove-result-s", (message) => {
+        console.log(message);
+        setWaiting(false);
+        setGameBegin(true);
+        setPartnerReady(false);
+        localStorage.setItem("room-" + rid + "-collections", message);
+        // if (message === "start") {
+        //   console.log("starting game...");
+        //   setWaiting(false);
+        //   setGameBegin(true);
+        //   setPartnerReady(true);
+        // } else {
+        //   console.log("ending game...");
+        //   setWaiting(true);
+        //   setGameBegin(false);
+        //   setPartnerReady(false);
+        // }
+      });
     }
   }, [socket]);
 
@@ -47,6 +74,7 @@ const Board = ({ rid }) => {
               )}
               {gameIntroBegin && <Intro rid={rid} />}
               {gameBegin && <Game rid={rid} />}
+              {displayCross && <Cross rid={rid} />}
             </div>
             <div className="h-full shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-2 rounded-lg">
               <Chat rid={rid} />

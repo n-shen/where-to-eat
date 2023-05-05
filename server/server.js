@@ -71,6 +71,10 @@ io.on("connection", (socket) => {
   socket.on("game-result", (room, message) => {
     socket.to(room).emit("game-result-s", message);
   });
+
+  socket.on("remove-result", (room, message) => {
+    socket.to(room).emit("remove-result-s", message);
+  });
 });
 
 // mongoose

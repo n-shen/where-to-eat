@@ -16,6 +16,8 @@ const Game = ({ rid }) => {
     setPartnerReady,
     partnerAction,
     setPartnerAction,
+    displayCross,
+    setDisplayCross,
   } = useStateContext();
 
   useEffect(() => {
@@ -42,10 +44,13 @@ const Game = ({ rid }) => {
           console.log("partner: win");
           setPartnerAction("");
           setGameBegin(false);
+          setWaiting(true);
         } else if (message === "lost") {
           console.log("partner: lost");
           setPartnerAction("");
+          setWaiting(false);
           setGameBegin(false);
+          setDisplayCross(true);
         } else if (message === "draw") {
           console.log("partner: draw");
           setPartnerAction("");
@@ -79,6 +84,7 @@ const Game = ({ rid }) => {
                 // inform partner
                 socket.emit("game-result", rid, "win");
                 setPartnerAction("");
+                setDisplayCross(true);
               } else if (partnerAction === "paper") {
                 console.log("result-lost");
                 setGameBegin(false);
@@ -128,6 +134,7 @@ const Game = ({ rid }) => {
                 // inform partner
                 socket.emit("game-result", rid, "win");
                 setPartnerAction("");
+                setDisplayCross(true);
               }
             }
           }}
@@ -164,6 +171,7 @@ const Game = ({ rid }) => {
                 // inform partner
                 socket.emit("game-result", rid, "win");
                 setPartnerAction("");
+                setDisplayCross(true);
               }
             }
           }}

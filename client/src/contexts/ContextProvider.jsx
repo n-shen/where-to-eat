@@ -20,6 +20,7 @@ export const ContextProvider = ({ children }) => {
   const [waiting, setWaiting] = useState(false);
   const [partnerReady, setPartnerReady] = useState(false);
   const [partnerAction, setPartnerAction] = useState("");
+  const [displayCross, setDisplayCross] = useState(false);
 
   return (
     <StateContext.Provider
@@ -44,6 +45,8 @@ export const ContextProvider = ({ children }) => {
         setPartnerReady,
         partnerAction,
         setPartnerAction,
+        displayCross,
+        setDisplayCross,
       }}
     >
       {children}
