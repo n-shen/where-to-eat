@@ -13,11 +13,11 @@ const cityData = () => {
 };
 
 const SearchForm = () => {
-  const { shared_info } = useStateContext();
+  const { shared_info, setQueryResults } = useStateContext();
   const baseURL = shared_info.apiURL;
 
   const [keyword, setKeyword] = useState("");
-  const [distance, setDistance] = useState(1);
+  const [distance, setDistance] = useState(5);
   const [category, setCategory] = useState("");
 
   const [error, setError] = useState("");
@@ -46,6 +46,7 @@ const SearchForm = () => {
       .then((response) => {
         setLoading(false);
         if (response.data["success"]) {
+          setQueryResults(response.data["results"]["businesses"]);
           console.log(response.data["results"]);
           setError("");
         } else {
@@ -88,16 +89,16 @@ const SearchForm = () => {
           </h2>
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          {error && (
-            <div role="alert" className="mb-5">
-              <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                An error occurred
-              </div>
-              <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                <p>{error}</p>
-              </div>
-            </div>
-          )}
+          {/*{error && (*/}
+          {/*  <div role="alert" className="mb-5">*/}
+          {/*    <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">*/}
+          {/*      An error occurred*/}
+          {/*    </div>*/}
+          {/*    <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">*/}
+          {/*      <p>{error}</p>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
@@ -128,6 +129,7 @@ const SearchForm = () => {
 
               <div className="mt-2">
                 <input
+                  placeholder="5"
                   id="distance"
                   name="distance"
                   type="number"
@@ -150,6 +152,7 @@ const SearchForm = () => {
                 <input
                   id="address"
                   name="address"
+                  required
                   onChange={(e) => setAddress(e.target.value)}
                   className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -236,6 +239,7 @@ const SearchForm = () => {
                 onClick={() => {
                   setMessage("");
                   setError("");
+                  setQueryResults(null);
                 }}
                 disabled={loading}
                 className="flex ml-3 w-1/3 justify-center rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -23,6 +23,8 @@ export const ContextProvider = ({ children }) => {
   const [displayCross, setDisplayCross] = useState(false);
   const [displayFinal, setDisplayFinal] = useState("");
 
+  const [queryResults, setQueryResults] = useState(null);
+
   return (
     <StateContext.Provider
       value={{
@@ -50,6 +52,8 @@ export const ContextProvider = ({ children }) => {
         setDisplayCross,
         displayFinal,
         setDisplayFinal,
+        queryResults,
+        setQueryResults,
       }}
     >
       {children}
