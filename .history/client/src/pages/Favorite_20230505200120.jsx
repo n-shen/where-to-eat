@@ -77,29 +77,21 @@ export default Favorite;
 
 export const FavoriteList = () => {
   return (
-    <div className="grid grid-cols-3 gap-5 m-2">
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Name
-      </h2>
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Address
-      </h2>
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Rating
-      </h2>
-      {restaurants.map((restaurant) => (
-        <React.Fragment key={restaurant.id}>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.name}
-          </p>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.address}
-          </p>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.rating}
-          </p>
-        </React.Fragment>
-      ))}
-    </div>
+    <div className="">
+      <div className="flex flex-col items-start justify-center ml-5">
+        {restaurants.map((restaurant) => (
+          <div
+            key={restaurant.id}
+            className="flex flex-col items-center justify-center m-3"
+          >
+            <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">Name</h2>
+            <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">Address</h2>
+            <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">Rating</h2>
+            <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">Image</h2>
+
+            <label
+
+      </div>
+   </div>
   );
 };

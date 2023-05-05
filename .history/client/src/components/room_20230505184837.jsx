@@ -1,21 +1,35 @@
-// When the user clicks on the "Start Pairing Session" button, the app should navigate to a this page that shows the user's selected favorite restaurants.
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { restaurants } from "../pages/Favorite";
+// import FavoriteList from "../pages/Favorite";
 
-const PairSession = ({ selectedRestaurants }) => {
-  selectedRestaurants = selectedRestaurants || [];
+const RoomPage = ({ onCreateRoom }) => {
+  const [selectedRestaurants, setSelectedRestaurants] = useState([]);
 
-  const handleFilterResults = () => {
-    // TODO: Navigate to the survey or game page
+  const handleToggleFavorite = (restaurant) => {
+    const index = selectedRestaurants.findIndex((r) => r.id === restaurant.id);
+    if (index === -1) {
+      setSelectedRestaurants((prevSelected) => [...prevSelected, restaurant]);
+    } else {
+      setSelectedRestaurants((prevSelected) =>
+        prevSelected.filter((r) => r.id !== restaurant.id)
+      );
+    }
+  };
+
+
+  const handleCreateRoom = () => {
+    onCreateRoom(selectedRestaurants);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-5">
-        Here are the restaurants that you selected:
+        Select your favorite restaurants:
       </h1>
       <div className="flex flex-col items-center justify-center">
         <ul className="flex flex-wrap justify-center">
-          {selectedRestaurants.map((restaurant, index) => (
+          {restaurants.map((restaurant, index) => (
             <li
               key={index}
               className="flex flex-col items-center justify-center m-5"
@@ -30,7 +44,11 @@ const PairSession = ({ selectedRestaurants }) => {
                 className="text-xl font-bold text-center"
               >
                 {restaurant.name}
-                <input type="checkbox" checked={true} disabled={true} />
+                <input
+                  type="checkbox"
+                  checked={selectedRestaurants.includes(restaurant)}
+                  onChange={() => handleToggleFavorite(restaurant)}
+                />
               </label>
             </li>
           ))}
@@ -39,13 +57,13 @@ const PairSession = ({ selectedRestaurants }) => {
         <button
           type="button"
           className="mt-5 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-          onClick={handleFilterResults}
+          onClick={handleCreateRoom}
         >
-          Filter Results
+          Create Room
         </button>
       </div>
     </div>
   );
 };
 
-export default PairSession;
+export default RoomPage;

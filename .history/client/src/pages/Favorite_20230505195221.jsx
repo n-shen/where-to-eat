@@ -10,7 +10,6 @@ export const restaurants = [
     image:
       "https://s3-media2.fl.yelpcdn.com/bphoto/6AUVIwPCv8wCZ9FYeCfocw/o.jpg",
     address: ["4255 W 3rd St", "Los Angeles, CA 90004"],
-    rating: "4",
   },
   {
     id: 2,
@@ -77,29 +76,23 @@ export default Favorite;
 
 export const FavoriteList = () => {
   return (
-    <div className="grid grid-cols-3 gap-5 m-2">
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Name
-      </h2>
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Address
-      </h2>
-      <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-center">
-        Rating
-      </h2>
-      {restaurants.map((restaurant) => (
-        <React.Fragment key={restaurant.id}>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.name}
-          </p>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.address}
-          </p>
-          <p className="flex items-center justify-center gap-3 text-xl text-center">
-            {restaurant.rating}
-          </p>
-        </React.Fragment>
-      ))}
+    <div className="flex flex-col items-center justify-center">
+      <ul className="flex flex-wrap justify-center">
+        {restaurants.map((restaurant, index) => (
+          <li
+            key={index}
+            className="flex flex-col items-center justify-center m-5"
+          >
+            <h2
+              htmlFor={restaurant.name}
+              className="text-xl font-bold text-center"
+            >
+              {restaurant.name}
+            </h2>
+            <p>{restaurant.address}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
