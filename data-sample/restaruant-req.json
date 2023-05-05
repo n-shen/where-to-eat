@@ -1,0 +1,10 @@
+[{"POST":  "http://localhost:8080/api/v1/query/get"},
+
+{
+"location": "Columbus",
+"keyword": "",
+"distance": "2.5",
+"category": "coffee",
+"open_now": true,
+"ip_location": false
+}]

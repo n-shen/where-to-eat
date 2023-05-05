@@ -1,0 +1,706 @@
+{
+    "success": true,
+    "message": "Query results fetched!",
+    "results": {
+        "businesses": [
+            {
+                "id": "gWM5n5Tyo5h74t-_lp1WUA",
+                "alias": "zzamong-los-angeles",
+                "name": "Zzamong",
+                "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/6AUVIwPCv8wCZ9FYeCfocw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/zzamong-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 1354,
+                "categories": [
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "noodles",
+                        "title": "Noodles"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.069295,
+                    "longitude": -118.307192
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "4255 W 3rd St",
+                    "address2": "",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90004",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "4255 W 3rd St",
+                        "Los Angeles, CA 90004"
+                    ]
+                },
+                "phone": "+12137392747",
+                "display_phone": "(213) 739-2747",
+                "distance": 1568.0862024316266
+            },
+            {
+                "id": "0stUvaDK5l0bW7tGb7_hgQ",
+                "alias": "fei-xiang-gong-los-angeles-9",
+                "name": "Fei Xiang Gong",
+                "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/xETE8FEDB3DRQVpwKuLbGw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/fei-xiang-gong-los-angeles-9?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 99,
+                "categories": [
+                    {
+                        "alias": "kebab",
+                        "title": "Kebab"
+                    },
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    }
+                ],
+                "rating": 4.5,
+                "coordinates": {
+                    "latitude": 34.06737,
+                    "longitude": -118.30892
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "356 S Western Ave",
+                    "address2": "Ste 203",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90020",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "356 S Western Ave",
+                        "Ste 203",
+                        "Los Angeles, CA 90020"
+                    ]
+                },
+                "phone": "+12133185588",
+                "display_phone": "(213) 318-5588",
+                "distance": 1319.513384709174
+            },
+            {
+                "id": "AWQELVqEeeCbstdp8PUVYg",
+                "alias": "the-ppong-los-angeles-2",
+                "name": "The Ppong",
+                "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/Li5i5N_Y7VwLTsJvLA2pKw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/the-ppong-los-angeles-2?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 234,
+                "categories": [
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "soup",
+                        "title": "Soup"
+                    }
+                ],
+                "rating": 4.5,
+                "coordinates": {
+                    "latitude": 34.062044,
+                    "longitude": -118.3146891
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "4003 Wilshire Blvd",
+                    "address2": null,
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90010",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "4003 Wilshire Blvd",
+                        "Los Angeles, CA 90010"
+                    ]
+                },
+                "phone": "+12135683953",
+                "display_phone": "(213) 568-3953",
+                "distance": 618.4737503662548
+            },
+            {
+                "id": "p1O9sw9QdnKn1cV2FEmmhw",
+                "alias": "feng-mao-lamb-kebab-olympic-los-angeles-3",
+                "name": "Feng Mao Lamb Kebab - Olympic",
+                "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/IztJ6SgvOsH0grlnaHGClQ/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/feng-mao-lamb-kebab-olympic-los-angeles-3?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 628,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "bbq",
+                        "title": "Barbeque"
+                    }
+                ],
+                "rating": 4.5,
+                "coordinates": {
+                    "latitude": 34.053617,
+                    "longitude": -118.319659
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "3901 W Olympic Blvd",
+                    "address2": "",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90019",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "3901 W Olympic Blvd",
+                        "Los Angeles, CA 90019"
+                    ]
+                },
+                "phone": "+13239351099",
+                "display_phone": "(323) 935-1099",
+                "distance": 900.5806722761823
+            },
+            {
+                "id": "q8hexOMqB9s3-ryNoum_KA",
+                "alias": "feng-mao-lamb-kebab-western-los-angeles-4",
+                "name": "Feng Mao Lamb Kebab - Western",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/AJRCsKOJFrmOwQcOd23b6Q/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/feng-mao-lamb-kebab-western-los-angeles-4?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 525,
+                "categories": [
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "bbq",
+                        "title": "Barbeque"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.0666262190672,
+                    "longitude": -118.308967856483
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "414 S Western Ave",
+                    "address2": "",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90020",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "414 S Western Ave",
+                        "Los Angeles, CA 90020"
+                    ]
+                },
+                "phone": "+12133889299",
+                "display_phone": "(213) 388-9299",
+                "distance": 1273.1951676793215
+            },
+            {
+                "id": "kDVlUSFSUR8ZYIOJi4bDQQ",
+                "alias": "odumak-los-angeles",
+                "name": "Odumak",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/hKaezVO6_0F50RXmfH7WBQ/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/odumak-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 122,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "gastropubs",
+                        "title": "Gastropubs"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.067837,
+                    "longitude": -118.308804
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "338 S Western Ave",
+                    "address2": "Ste D",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90020",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "338 S Western Ave",
+                        "Ste D",
+                        "Los Angeles, CA 90020"
+                    ]
+                },
+                "phone": "+12136286996",
+                "display_phone": "(213) 628-6996",
+                "distance": 1350.3699191721985
+            },
+            {
+                "id": "r1dZeBu2gIvA2sAL1LpesQ",
+                "alias": "heung-rae-gak-los-angeles",
+                "name": "Heung Rae Gak",
+                "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/a-KrR1aVmbrstFCymswgTw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/heung-rae-gak-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 216,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.067312,
+                    "longitude": -118.3092449
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "357 S Western Ave",
+                    "address2": "Ste 102",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90020",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "357 S Western Ave",
+                        "Ste 102",
+                        "Los Angeles, CA 90020"
+                    ]
+                },
+                "phone": "+12133830178",
+                "display_phone": "(213) 383-0178",
+                "distance": 1262.5245355567256
+            },
+            {
+                "id": "0IeIzElSBK1XJVqtzFvRlA",
+                "alias": "pixiu-mala-hongtang-los-angeles",
+                "name": "Pixiu Mala Hongtang",
+                "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/8IyqX51_pWRqLm6hNHz3Ig/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/pixiu-mala-hongtang-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 84,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "hotpot",
+                        "title": "Hot Pot"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    }
+                ],
+                "rating": 4.5,
+                "coordinates": {
+                    "latitude": 34.06635753748882,
+                    "longitude": -118.3096243
+                },
+                "transactions": [],
+                "price": "$$",
+                "location": {
+                    "address1": "425 S Western Ave",
+                    "address2": null,
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90020",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "425 S Western Ave",
+                        "Los Angeles, CA 90020"
+                    ]
+                },
+                "phone": "+12133409429",
+                "display_phone": "(213) 340-9429",
+                "distance": 1205.7509072284943
+            },
+            {
+                "id": "-RB75P7rg6Jyp8ZMegSmCA",
+                "alias": "little-china-los-angeles-2",
+                "name": "Little China",
+                "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/apJ_RQF7rZ5YaS7QwDNJ0w/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/little-china-los-angeles-2?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 39,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.052698,
+                    "longitude": -118.3183179
+                },
+                "transactions": [],
+                "location": {
+                    "address1": "3636 W Olympic Blvd",
+                    "address2": "",
+                    "address3": null,
+                    "city": "Los Angeles",
+                    "zip_code": "90019",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "3636 W Olympic Blvd",
+                        "Los Angeles, CA 90019"
+                    ]
+                },
+                "phone": "+13237301890",
+                "display_phone": "(323) 730-1890",
+                "distance": 1028.163809236628
+            },
+            {
+                "id": "pwX0Cg8jZyluvyPgqwCw4A",
+                "alias": "kyodong-noodles-los-angeles-3",
+                "name": "Kyodong Noodles",
+                "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/jTKXiDTaD1HokKzOTBmoiA/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/kyodong-noodles-los-angeles-3?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 138,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    },
+                    {
+                        "alias": "noodles",
+                        "title": "Noodles"
+                    }
+                ],
+                "rating": 3.5,
+                "coordinates": {
+                    "latitude": 34.06269770000036,
+                    "longitude": -118.30961984111224
+                },
+                "transactions": [
+                    "delivery"
+                ],
+                "price": "$$",
+                "location": {
+                    "address1": "621 S Western Ave",
+                    "address2": "Ste 303",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90005",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "621 S Western Ave",
+                        "Ste 303",
+                        "Los Angeles, CA 90005"
+                    ]
+                },
+                "phone": "+12133800664",
+                "display_phone": "(213) 380-0664",
+                "distance": 1090.3542893290587
+            },
+            {
+                "id": "RT2IIgP28pVdcE_e-RbKcw",
+                "alias": "plaza-mandarin-house-los-angeles",
+                "name": "Plaza Mandarin House",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/1nVrf8ItPD0dF_97JGQEzw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/plaza-mandarin-house-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 129,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "gourmet",
+                        "title": "Specialty Food"
+                    },
+                    {
+                        "alias": "korean",
+                        "title": "Korean"
+                    }
+                ],
+                "rating": 3.5,
+                "coordinates": {
+                    "latitude": 34.055211,
+                    "longitude": -118.308422
+                },
+                "transactions": [],
+                "price": "$$",
+                "location": {
+                    "address1": "928 S Western Ave",
+                    "address2": "Ste 147",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90006",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "928 S Western Ave",
+                        "Ste 147",
+                        "Los Angeles, CA 90006"
+                    ]
+                },
+                "phone": "+12133864588",
+                "display_phone": "(213) 386-4588",
+                "distance": 1388.5686901698548
+            },
+            {
+                "id": "A6LDWuEICzbyxfzN6nFuhg",
+                "alias": "hong-yeon-llc-los-angeles",
+                "name": "HONG YEON LLC",
+                "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/UhEEX-pcLxx5QpX5HH_X9w/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/hong-yeon-llc-los-angeles?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 22,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    }
+                ],
+                "rating": 4,
+                "coordinates": {
+                    "latitude": 34.0528,
+                    "longitude": -118.3126
+                },
+                "transactions": [],
+                "location": {
+                    "address1": "3411 W Olympic Blvd",
+                    "address2": null,
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90019",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "3411 W Olympic Blvd",
+                        "Los Angeles, CA 90019"
+                    ]
+                },
+                "phone": "+13236417172",
+                "display_phone": "(323) 641-7172",
+                "distance": 1265.1541141459074
+            },
+            {
+                "id": "3N786VmrPN2TKHsGM78nsQ",
+                "alias": "vip-chinese-restaurant-los-angeles-2",
+                "name": "VIP Chinese Restaurant",
+                "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/_rvBWvWxKdoWGoo7Mbu8bA/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/vip-chinese-restaurant-los-angeles-2?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 128,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "seafood",
+                        "title": "Seafood"
+                    },
+                    {
+                        "alias": "noodles",
+                        "title": "Noodles"
+                    }
+                ],
+                "rating": 3,
+                "coordinates": {
+                    "latitude": 34.05941,
+                    "longitude": -118.3092249
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$",
+                "location": {
+                    "address1": "705 S Western Ave",
+                    "address2": "",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90005",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "705 S Western Ave",
+                        "Los Angeles, CA 90005"
+                    ]
+                },
+                "phone": "+12133898532",
+                "display_phone": "(213) 389-8532",
+                "distance": 1122.0013643758443
+            },
+            {
+                "id": "6Ei6bQFtJ9aQ7RbCppsgrQ",
+                "alias": "panda-express-los-angeles-2",
+                "name": "Panda Express",
+                "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/44dT6JEXkhMrtUcps1a5jw/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/panda-express-los-angeles-2?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 159,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    },
+                    {
+                        "alias": "hotdogs",
+                        "title": "Fast Food"
+                    }
+                ],
+                "rating": 2,
+                "coordinates": {
+                    "latitude": 34.048413,
+                    "longitude": -118.337975
+                },
+                "transactions": [
+                    "delivery",
+                    "pickup"
+                ],
+                "price": "$",
+                "location": {
+                    "address1": "4700 West Pico Blvd.",
+                    "address2": "SPACE #E",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90019",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "4700 West Pico Blvd.",
+                        "SPACE #E",
+                        "Los Angeles, CA 90019"
+                    ]
+                },
+                "phone": "+13239329581",
+                "display_phone": "(323) 932-9581",
+                "distance": 2117.498576608413
+            },
+            {
+                "id": "aG-xLBRkGZUbxRS3YNX0Gw",
+                "alias": "chinatown-express-los-angeles-13",
+                "name": "Chinatown Express",
+                "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/PGAH6t2vWm03vkYyj_xmAQ/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/chinatown-express-los-angeles-13?adjust_creative=WtuNpLK89oDMJYyp7JA50A&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WtuNpLK89oDMJYyp7JA50A",
+                "review_count": 37,
+                "categories": [
+                    {
+                        "alias": "chinese",
+                        "title": "Chinese"
+                    }
+                ],
+                "rating": 3.5,
+                "coordinates": {
+                    "latitude": 34.0696716308594,
+                    "longitude": -118.308753967285
+                },
+                "transactions": [],
+                "price": "$",
+                "location": {
+                    "address1": "252 S Western Ave",
+                    "address2": "",
+                    "address3": "",
+                    "city": "Los Angeles",
+                    "zip_code": "90004",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "252 S Western Ave",
+                        "Los Angeles, CA 90004"
+                    ]
+                },
+                "phone": "+12133831559",
+                "display_phone": "(213) 383-1559",
+                "distance": 1461.1028627954202
+            }
+        ],
+        "total": 15,
+        "region": {
+            "center": {
+                "longitude": -118.32138061523438,
+                "latitude": 34.0615895441259
+            }
+        }
+    }
+}
