@@ -3,15 +3,23 @@ import Select from "react-select";
 import axios from "axios";
 import { cities } from "../data/cities";
 
+const cityData = () => {
+    const options = []
+    for (let i = 0; i < cities.length; i++) {
+        options.push({label: cities[i], value: i})
+    }
+    return options
+}
+
 const SearchForm = () => {
     // const { shared_info } = useStateContext();
     const baseURL = "";
-    // const { dispatch } = useCustomizesContext();
-
+    const cityOptions = cityData()
     const [keyword, setKeyword] = useState("");
     const [distance, setDistance] = useState(0);
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState(cities);
+    const [enteredLocation, setEnteredLocation] = useState("none");
     const [autodetect, setAutodetect] = useState(false);
     const [description, setDescription] = useState(null);
     const [error, setError] = useState("");
@@ -36,7 +44,6 @@ const SearchForm = () => {
             )
             .then((response) => {
                 setLoading(false);
-                // console.log(response.data);
                 if (response.data["success"]) {
                     setError("");
                     setMessage("A new dictionary has been created!");
@@ -68,10 +75,9 @@ const SearchForm = () => {
           });
       };
 
-    //   const handleLocationChange = (e) => {
-    //     setSearchTerm(e.target.value);
-    //   };
-      
+    const handleTypeSelect = e => {
+        setEnteredLocation(e.value);
+    };
 
     return (
         <>
@@ -81,7 +87,6 @@ const SearchForm = () => {
                         Find a place to eat
                     </h2>
                 </div>
-
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     {error && (
                         <div role="alert" className="mb-5">
@@ -122,7 +127,6 @@ const SearchForm = () => {
                                 />
                             </div>
                         </div>
-
                         <div>
                             <div className="flex items-center justify-between">
                                 <label
@@ -142,7 +146,6 @@ const SearchForm = () => {
                                 />
                             </div>
                         </div>
-
                         <div>
                             <div className="flex items-center justify-between">
                                 <label
@@ -153,16 +156,17 @@ const SearchForm = () => {
                                 </label>
                             </div>
                             <div className="mt-2">
-                                <input
-                                    id="location"
-                                    name="location"
-                                    type="text"
-                                    onChange={(e) => setLocation(e.target.value)}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <Select
+                                    options={cityOptions}
+                                    onChange={handleTypeSelect}
+                                    value={cityOptions.filter(function(option) {
+                                        return option.value === enteredLocation;
+                                      })}
+                                    searchable="true"
+                                    placeholder={"Enter City"}
                                 />
                             </div>
                         </div>
-
                         <div>
                             <label>
                                 <input
@@ -174,9 +178,6 @@ const SearchForm = () => {
                                 <span className="ml-2 text-sm font-medium leading-6 text-gray-900">Auto-detect my location</span>
                             </label>
                         </div>
-                        
-                        
-
                         <div className="flex justify-center">
                             <button
                                 type="submit"
@@ -185,7 +186,6 @@ const SearchForm = () => {
                             >
                                 Save
                             </button>
-
                             <button
                                 type="reset"
                                 onClick={() => {
