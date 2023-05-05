@@ -116,7 +116,7 @@ const SearchResult = ({ restaurants }) => {
                                 Title
                             </th>
                             <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
-                                Distance
+                                Rating
                             </th>
                             <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
                                 Location
@@ -161,13 +161,14 @@ const SearchResult = ({ restaurants }) => {
                                                     "phone": val.display_phone,
                                                     "rating": val.rating,
                                                     "price": val.price,
-                                                    "category": val.categories
+                                                    "category": val.categories,
+                                                    "coordinates": val.coordinates
 
                                                 })}}>
                                                     {val.name}
                                                 </a>
                                         </td>
-                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.distance}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.rating}</td>
                                         <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.location.address1}</td>
                                         <td className="px-1 py-4">
                                             <button

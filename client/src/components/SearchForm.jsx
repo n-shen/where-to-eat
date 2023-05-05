@@ -63,7 +63,7 @@ const SearchForm = () => {
             "location": enteredLocation,
             "keyword": keyword,
             "distance": distance,
-            "category": keyword,
+            "category": category,
             "open_now": true,
             "ip_location": false
         })
@@ -168,7 +168,7 @@ const SearchForm = () => {
                                     htmlFor="distance"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Distance
+                                    Distance (max 20 miles)
                                 </label>
                             </div>
                             <div className="mt-2">
@@ -180,6 +180,28 @@ const SearchForm = () => {
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
+                        </div>
+                        <div className=" items-center justify-between">
+                          <label
+                            htmlFor="category"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Category
+                          </label>
+                          <select
+                            onChange={(e) => {
+                              setCategory(e.target.value);
+                            }}
+                            id="countries_multiple"
+                            className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          >
+                            <option>Select one</option>
+                            <option value="italian">Italian</option>
+                            <option value="coffee">Coffee</option>
+                            <option value="korean">Korean</option>
+                            <option value="thai">Thai Food</option>
+                            <option value="chinese">Chinese</option>
+                          </select>
                         </div>
                         <div>
                             <div className="flex items-center justify-between">
@@ -203,7 +225,8 @@ const SearchForm = () => {
                                 />
                             </div>
                         </div>
-                        <div>
+
+                        {/* <div>
                             <label>
                                 <input
                                     id="autodetect"
@@ -213,7 +236,7 @@ const SearchForm = () => {
                                 />
                                 <span className="ml-2 text-sm font-medium leading-6 text-gray-900">Auto-detect my location</span>
                             </label>
-                        </div>
+                        </div> */}
                         <div className="flex justify-center">
                             <button
                                 type="submit"
