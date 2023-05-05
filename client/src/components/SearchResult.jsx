@@ -5,8 +5,10 @@ import { ImLink } from "react-icons/im";
 
 import axios from "axios";
 
-const SearchResult = () => {
+const SearchResult = ({ restaurants }) => {
     const baseURL = "shared_info.baseURL";
+
+    console.log(restaurants);
 
     const [sharingUrl, setSharingUrl] = useState("/");
     const [activeLink, setActiveLink] = useState(false);
@@ -24,7 +26,7 @@ const SearchResult = () => {
 
     return (
         <div className="flex w-full justify-center">
-            {cloud_ctms && cloud_ctms.length > 0 && (
+            {restaurants && restaurants.length > 0 && (
                 <div className="w-10/12 relative overflow-x-auto">
                     {activeLink && (
                         <div
@@ -85,7 +87,7 @@ const SearchResult = () => {
                         </div>
                     )}
 
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-y-auto max-h-0.5">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -106,8 +108,8 @@ const SearchResult = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {cloud_ctms &&
-                            cloud_ctms.map((val, index) => {
+                        {restaurants &&
+                            restaurants.map((val, index) => {
                                 return (
                                     <tr
                                         key={index}
@@ -121,7 +123,7 @@ const SearchResult = () => {
                                         </th>
                                         <td style={{ width: '100px', textAlign: 'center' }}>
                                             <img
-                                                src={val.thumbnail}
+                                                src={val.image_url}
                                                 alt="Image description"
                                                 style={{
                                                 display: 'inline-block',
@@ -132,9 +134,9 @@ const SearchResult = () => {
                                                 }}
                                             />
                                         </td>
-                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.title}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.name}</td>
                                         <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.distance}</td>
-                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.location}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.location.address1}</td>
                                         <td className="px-1 py-4">
                                             <button
                                                 onClick={() => handleSharing(val)}
@@ -151,7 +153,7 @@ const SearchResult = () => {
                 </div>
             )}
 
-            { cloud_ctms && cloud_ctms.length === 0 && (
+            { restaurants && restaurants.length === 0 && (
                 <div
                     className="flex p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                     role="alert"

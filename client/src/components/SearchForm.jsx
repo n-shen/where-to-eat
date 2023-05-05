@@ -2,6 +2,7 @@ import { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { cities } from "../data/cities";
+import SearchResult from "./SearchResult";
 
 const cityData = () => {
     const options = []
@@ -26,33 +27,62 @@ const SearchForm = () => {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const [restaurants, setRestaurants] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
     };
 
-    const handleSave = (words_array) => {
-        axios
-            .post(
-                `${baseURL}/ctm/post`,
-                {
-                    ctmTitle: keyword,
-                    ctmDescription: description,
-                    ctmWords: words_array,
-                }
-            )
+    // const handleSave = (words_array) => {
+    //     axios
+    //         .post(
+    //             `${baseURL}/ctm/post`,
+    //             {
+    //                 ctmTitle: keyword,
+    //                 ctmDescription: description,
+    //                 ctmWords: words_array,
+    //             }
+    //         )
+    //         .then((response) => {
+    //             setLoading(false);
+    //             if (response.data["success"]) {
+    //                 setError("");
+    //                 setMessage("A new dictionary has been created!");
+    //             } else {
+    //                 setError(response.data["message"]);
+    //                 setMessage("");
+    //             }
+    //         });
+    // };
+
+    const onClickSave = () => {
+        axios.post("http://localhost:8080/api/v1/query/get", {
+            "location": enteredLocation,
+            "keyword": keyword,
+            "distance": distance,
+            "category": keyword,
+            "open_now": true,
+            "ip_location": false
+        })
             .then((response) => {
-                setLoading(false);
-                if (response.data["success"]) {
-                    setError("");
-                    setMessage("A new dictionary has been created!");
-                } else {
-                    setError(response.data["message"]);
-                    setMessage("");
-                }
-            });
-    };
+                console.log(response.data);
+                setRestaurants(response.data.results.businesses);
+                console.log(response.data.results.businesses);
+                })
+            .catch((error) => {
+                console.log(error);
+            });        
+    }
+
+    const onClickClear = () => {
+        setRestaurants([]);
+        setMessage("");
+        setError("");
+        setKeyword("");
+        setDistance("");
+        setLocation("");
+    }
 
     const handleAutodetect = () => {
         setAutodetect((prevState) => {
@@ -76,11 +106,14 @@ const SearchForm = () => {
       };
 
     const handleTypeSelect = e => {
-        setEnteredLocation(e.value);
+        console.log(e)
+        console.log(e.value)
+        setEnteredLocation(e.label);
     };
 
     return (
         <>
+            <div className="mt-5 flex w-full justify-center">
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -140,7 +173,7 @@ const SearchForm = () => {
                                 <input
                                     id="distance"
                                     name="distance"
-                                    type="number"
+                                    type="text"
                                     onChange={(e) => setDistance(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -183,15 +216,13 @@ const SearchForm = () => {
                                 type="submit"
                                 disabled={loading}
                                 className="flex w-1/3 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
+                                onClick={() => {onClickSave()}}
+                                >
                                 Save
                             </button>
                             <button
                                 type="reset"
-                                onClick={() => {
-                                    setMessage("");
-                                    setError("");
-                                }}
+                                onClick={() => {onClickClear()}}
                                 disabled={loading}
                                 className="flex ml-3 w-1/3 justify-center rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
@@ -200,6 +231,14 @@ const SearchForm = () => {
                         </div>
                     </form>
                 </div>
+            </div>
+            </div>
+            <div>
+                {(restaurants.length > 0) ? (
+                    <SearchResult restaurants = {restaurants} />
+                    ) : (<div></div>)
+                }
+                
             </div>
         </>
     );

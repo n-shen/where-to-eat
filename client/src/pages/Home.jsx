@@ -18,10 +18,10 @@ const Home = () => {
     <div className={screenSize >= 900 ? "mt-0" : "mt-16"}>
       {!rid && (
         <>
-          <div className="mt-5 flex w-full justify-center">
+          {/* <div className="mt-5 flex w-full justify-center"> */}
             <SearchForm />
-          </div>
-          <SearchResult />
+          {/* </div> */}
+          {/* <SearchResult /> */}
         </>
       )}
 
