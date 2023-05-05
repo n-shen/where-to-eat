@@ -162,16 +162,16 @@ const SearchResult = () => {
                         <button
                           type="button"
                           onClick={() => {
-                            console.log("saving fav:", val["alias"]);
+                            // console.log("saving fav:", val["alias"]);
                             let fav = localStorage.getItem("fav");
                             let fav_docker = [];
                             if (!fav)
                               localStorage.setItem("fav", JSON.stringify([]));
                             else fav_docker = JSON.parse(fav);
-                            console.log(
-                              "before",
-                              JSON.parse(localStorage.getItem("fav"))
-                            );
+                            // console.log(
+                            //   "before",
+                            //   JSON.parse(localStorage.getItem("fav"))
+                            // );
 
                             try {
                               if (!localStore.includes(val["alias"])) {

@@ -30,7 +30,7 @@ const Board = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       setSocketId(socket.id);
-      console.log(socket.id, "joining room", rid);
+      // console.log(socket.id, "joining room", rid);
       setWaiting(true);
       socket.emit("join-room", rid);
     }
@@ -39,7 +39,7 @@ const Board = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("remove-result-s", (message) => {
-        console.log(message);
+        // console.log(message);
         setWaiting(false);
         setGameBegin(true);
         setPartnerReady(false);
@@ -51,7 +51,7 @@ const Board = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("end-session-s", (message) => {
-        console.log(message);
+        // console.log(message);
         setWaiting(false);
         setGameBegin(false);
         setPartnerReady(false);

@@ -17,7 +17,7 @@ const Chat = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("chat-in", (message) => {
-        console.log("[C-chat-in]", "Partner: " + message);
+        // console.log("[C-chat-in]", "Partner: " + message);
         if (message === "Got you, let's begin!") {
           setWaiting(false);
           setSelectionBegin(true);
@@ -30,7 +30,7 @@ const Chat = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("server-notice", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message === "Server: partner joined the room!") {
           socket.emit("chat-out", "Got you, let's begin!", rid);
           setHistory((history) => [...history, "[Me]: Got you, let's begin!"]);
@@ -44,7 +44,7 @@ const Chat = ({ rid }) => {
   const handleSend = (e) => {
     e.preventDefault();
     socket.emit("chat-out", message, rid);
-    console.log("[C-chat-out]", "[Me]: " + message);
+    // console.log("[C-chat-out]", "[Me]: " + message);
     setHistory((history) => [...history, "[Me]: " + message]);
     setMessage("");
   };

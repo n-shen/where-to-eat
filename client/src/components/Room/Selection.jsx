@@ -19,9 +19,9 @@ const Selection = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("ex-selection-store", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message !== "") {
-          console.log("storing...");
+          // console.log("storing...");
           localStorage.setItem("room-" + rid + "-collections", message);
         }
       });
@@ -31,9 +31,9 @@ const Selection = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("ex-selection-done", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message !== "") {
-          console.log("finalizing...");
+          // console.log("finalizing...");
           localStorage.setItem(
             "room-" + rid + "-collections",
             JSON.parse(message)
@@ -46,13 +46,13 @@ const Selection = ({ rid }) => {
   }, [socket]);
 
   const handleConfirm = () => {
-    console.log("submitting..");
+    // console.log("submitting..");
     if (selectValueOne && selectValueTwo) {
-      console.log("selected: ", [selectValueOne, selectValueTwo]);
+      // console.log("selected: ", [selectValueOne, selectValueTwo]);
 
       const lsp = localStorage.getItem("room-" + rid + "-collections");
       if (lsp) {
-        console.log("ls-partners: ", JSON.parse(lsp));
+        // console.log("ls-partners: ", JSON.parse(lsp));
         let old = JSON.parse(lsp);
         old.push(selectValueOne);
         old.push(selectValueTwo);
@@ -76,11 +76,11 @@ const Selection = ({ rid }) => {
         setSelectionBegin(false);
         setWaiting(true);
         if (socket.connected) {
-          console.log(
-            "exchanging info in room: ",
-            rid,
-            JSON.stringify([selectValueOne, selectValueTwo])
-          );
+          // console.log(
+          //   "exchanging info in room: ",
+          //   rid,
+          //   JSON.stringify([selectValueOne, selectValueTwo])
+          // );
           socket.emit(
             "ex-selection",
             rid,
