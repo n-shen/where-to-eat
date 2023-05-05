@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Select from "react-select";
 import axios from "axios";
+import { cities } from "../data/cities";
 
 const SearchForm = () => {
     // const { shared_info } = useStateContext();
@@ -9,12 +11,13 @@ const SearchForm = () => {
     const [keyword, setKeyword] = useState("");
     const [distance, setDistance] = useState(0);
     const [category, setCategory] = useState("");
-    const [location, setLocation] = useState("");
+    const [location, setLocation] = useState(cities);
     const [autodetect, setAutodetect] = useState(false);
     const [description, setDescription] = useState(null);
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +46,32 @@ const SearchForm = () => {
                 }
             });
     };
+
+    const handleAutodetect = () => {
+        setAutodetect((prevState) => {
+            if (!prevState) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  console.log('Latitude:', position.coords.latitude);
+                  console.log('Longitude:', position.coords.longitude);
+      
+                  setAutodetect(true); 
+                },
+                (error) => {
+                  console.error(error);
+                  setAutodetect(false); 
+                }
+              );
+            } else {
+              return !prevState;
+            }
+          });
+      };
+
+    //   const handleLocationChange = (e) => {
+    //     setSearchTerm(e.target.value);
+    //   };
+      
 
     return (
         <>
@@ -140,7 +169,7 @@ const SearchForm = () => {
                                     id="autodetect"
                                     name="autodetect"
                                     type="checkbox"
-                                    onChange={() => setAutodetect(!autodetect)}
+                                    onChange={handleAutodetect}
                                 />
                                 <span className="ml-2 text-sm font-medium leading-6 text-gray-900">Auto-detect my location</span>
                             </label>
