@@ -8,11 +8,18 @@ import { Room } from "../components";
 // import axios from "axios";
 
 const Home = () => {
-  const { shared_info, screenSize } = useStateContext();
+  const { shared_info, screenSize, localStore, setLocalStore } =
+    useStateContext();
   // const baseURL = shared_info.baseURL;
 
   const [sessionParameters] = useSearchParams();
   const rid = sessionParameters.get("room");
+
+  useEffect(() => {
+    let fav = localStorage.getItem("fav");
+    if (!fav) localStorage.setItem("fav", JSON.stringify([]));
+    setLocalStore(fav);
+  }, [localStore]);
 
   return (
     <div className={screenSize >= 900 ? "mt-0" : "mt-16"}>

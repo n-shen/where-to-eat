@@ -18,19 +18,21 @@ const Game = ({ rid }) => {
     setPartnerAction,
     displayCross,
     setDisplayCross,
+    history,
+    setHistory,
   } = useStateContext();
 
   useEffect(() => {
     if (socket.connected) {
       socket.on("game-action-s", (message) => {
         if (message === "rock") {
-          console.log("partner: rock");
+          // console.log("partner: rock");
           setPartnerAction("rock");
         } else if (message === "paper") {
-          console.log("partner: paper");
+          // console.log("partner: paper");
           setPartnerAction("paper");
         } else if (message === "scissor") {
-          console.log("partner: scissor");
+          // console.log("partner: scissor");
           setPartnerAction("scissor");
         }
       });
@@ -41,18 +43,18 @@ const Game = ({ rid }) => {
     if (socket.connected) {
       socket.on("game-result-s", (message) => {
         if (message === "win") {
-          console.log("partner: win");
+          // console.log("partner: win");
           setPartnerAction("");
           setGameBegin(false);
           setWaiting(true);
         } else if (message === "lost") {
-          console.log("partner: lost");
+          // console.log("partner: lost");
           setPartnerAction("");
           setWaiting(false);
           setGameBegin(false);
           setDisplayCross(true);
         } else if (message === "draw") {
-          console.log("partner: draw");
+          // console.log("partner: draw");
           setPartnerAction("");
           setWaiting(false);
           setGameBegin(true);
@@ -76,7 +78,12 @@ const Game = ({ rid }) => {
               setWaiting(true);
             } else {
               if (partnerAction === "scissor") {
-                console.log("result-win");
+                // console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setGameBegin(false);
                 setWaiting(false);
                 // inform partner
@@ -84,14 +91,21 @@ const Game = ({ rid }) => {
                 setPartnerAction("");
                 setDisplayCross(true);
               } else if (partnerAction === "paper") {
-                console.log("result-lost");
+                // console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 setWaiting(true);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
                 setPartnerAction("");
               } else if (partnerAction === "rock") {
-                console.log("result-draw");
+                // console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setGameBegin(true);
                 setWaiting(false);
                 // inform partner
@@ -116,19 +130,31 @@ const Game = ({ rid }) => {
             } else {
               if (partnerAction === "scissor") {
                 console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
                 setWaiting(true);
               } else if (partnerAction === "paper") {
-                console.log("result-draw");
+                // console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setWaiting(false);
                 setGameBegin(true);
                 // inform partner
                 socket.emit("game-result", rid, "draw");
                 setWaiting(false);
               } else if (partnerAction === "rock") {
-                console.log("result-win");
+                // console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setWaiting(false);
                 setGameBegin(false);
                 // inform partner
@@ -151,14 +177,21 @@ const Game = ({ rid }) => {
               setWaiting(true);
             } else {
               if (partnerAction === "rock") {
-                console.log("result-lost");
+                // console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
                 setPartnerAction("");
                 setWaiting(true);
               } else if (partnerAction === "scissor") {
-                console.log("result-draw");
+                // console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setWaiting(false);
                 setGameBegin(true);
                 // inform partner
@@ -166,7 +199,12 @@ const Game = ({ rid }) => {
                 setWaiting(false);
                 setPartnerAction("");
               } else if (partnerAction === "paper") {
-                console.log("result-win");
+                // console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setWaiting(false);
                 setGameBegin(false);
                 // inform partner

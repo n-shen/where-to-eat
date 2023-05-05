@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
+import Select from "react-select";
 
 const Selection = ({ rid }) => {
   const {
@@ -10,6 +11,7 @@ const Selection = ({ rid }) => {
     setWaiting,
     setGameBegin,
     setGameIntroBegin,
+    localStore,
   } = useStateContext();
   const [selectValueOne, setSelectValueOne] = useState("");
   const [selectValueTwo, setSelectValueTwo] = useState("");
@@ -17,9 +19,9 @@ const Selection = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("ex-selection-store", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message !== "") {
-          console.log("storing...");
+          // console.log("storing...");
           localStorage.setItem("room-" + rid + "-collections", message);
         }
       });
@@ -29,9 +31,9 @@ const Selection = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("ex-selection-done", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message !== "") {
-          console.log("finalizing...");
+          // console.log("finalizing...");
           localStorage.setItem(
             "room-" + rid + "-collections",
             JSON.parse(message)
@@ -44,13 +46,13 @@ const Selection = ({ rid }) => {
   }, [socket]);
 
   const handleConfirm = () => {
-    console.log("submitting..");
+    // console.log("submitting..");
     if (selectValueOne && selectValueTwo) {
-      console.log("selected: ", [selectValueOne, selectValueTwo]);
+      // console.log("selected: ", [selectValueOne, selectValueTwo]);
 
       const lsp = localStorage.getItem("room-" + rid + "-collections");
       if (lsp) {
-        console.log("ls-partners: ", JSON.parse(lsp));
+        // console.log("ls-partners: ", JSON.parse(lsp));
         let old = JSON.parse(lsp);
         old.push(selectValueOne);
         old.push(selectValueTwo);
@@ -74,11 +76,11 @@ const Selection = ({ rid }) => {
         setSelectionBegin(false);
         setWaiting(true);
         if (socket.connected) {
-          console.log(
-            "exchanging info in room: ",
-            rid,
-            JSON.stringify([selectValueOne, selectValueTwo])
-          );
+          // console.log(
+          //   "exchanging info in room: ",
+          //   rid,
+          //   JSON.stringify([selectValueOne, selectValueTwo])
+          // );
           socket.emit(
             "ex-selection",
             rid,
@@ -97,7 +99,7 @@ const Selection = ({ rid }) => {
             htmlFor="countries_multiple"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Select first option
+            Select first option * required
           </label>
           <select
             onChange={(e) => {
@@ -106,12 +108,16 @@ const Selection = ({ rid }) => {
             id="countries_multiple"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option>Select one</option>
-            <option value="Apples">Apples</option>
-            <option value="Grape">Grape</option>
-            <option value="Bananas">Bananas</option>
-            <option value="Blueberries">Blueberries</option>
-            <option value="Melons">Melons</option>
+            <option>* required but can be duplicated</option>
+            {localStore &&
+              JSON.parse(localStore).map((als) => {
+                const favd = JSON.parse(localStorage.getItem("fav_" + als));
+                return (
+                  <option key={favd[0]} value={favd[1]}>
+                    {favd[1]} | Rating: {favd[2]} | {favd[3]}{" "}
+                  </option>
+                );
+              })}
           </select>
         </div>
 
@@ -120,21 +126,25 @@ const Selection = ({ rid }) => {
             htmlFor="countries_multiple"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Select second option
+            Select second option * required
           </label>
           <select
             onChange={(e) => {
               setSelectValueTwo(e.target.value);
             }}
-            id="countries_multiple"
+            id="id"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option>Select one</option>
-            <option value="Apples">Apples</option>
-            <option value="Grape">Grape</option>
-            <option value="Bananas">Bananas</option>
-            <option value="Blueberries">Blueberries</option>
-            <option value="Melons">Melons</option>
+            <option>* required name | rating | price</option>
+            {localStore &&
+              JSON.parse(localStore).map((als) => {
+                const favd = JSON.parse(localStorage.getItem("fav_" + als));
+                return (
+                  <option key={favd[0]} value={favd[1]}>
+                    {favd[1]} | Rating: {favd[2]} | {favd[3]}{" "}
+                  </option>
+                );
+              })}
           </select>
         </div>
         <button

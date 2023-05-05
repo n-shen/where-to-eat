@@ -122,7 +122,7 @@ const Cross = ({ rid }) => {
                 let old = JSON.parse(allBuckets);
                 const idx = old.indexOf(selectedItem, 0);
                 if (idx > -1) old.splice(idx, 1);
-                console.log(old);
+                // console.log(old);
                 localStorage.setItem(
                   "room-" + rid + "-collections",
                   JSON.stringify(old)
@@ -134,7 +134,7 @@ const Cross = ({ rid }) => {
                   socket.emit("remove-result", rid, JSON.stringify(old));
                 } else {
                   setDisplayFinal(old[0]);
-                  console.log("go to", old[0]);
+                  // console.log("go to", old[0]);
                   socket.emit("end-session", rid, old[0]);
                 }
               }}
@@ -162,6 +162,7 @@ const Cross = ({ rid }) => {
               </button>
             </div>
           )}
+          <p className="pt-5">You won this round! Please remove one~</p>
         </div>
       </div>
     </>

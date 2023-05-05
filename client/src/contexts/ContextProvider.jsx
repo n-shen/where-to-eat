@@ -22,6 +22,15 @@ export const ContextProvider = ({ children }) => {
   const [partnerAction, setPartnerAction] = useState("");
   const [displayCross, setDisplayCross] = useState(false);
   const [displayFinal, setDisplayFinal] = useState("");
+  const [history, setHistory] = useState([
+    ">> server >> Your are connected!",
+    ">> server >> Maker sure you have at least one favorite restaurant in your list!",
+    ">> server >> Feel free to chat with your friend!",
+  ]);
+
+  const [localStore, setLocalStore] = useState(null);
+
+  const [queryResults, setQueryResults] = useState(null);
 
   return (
     <StateContext.Provider
@@ -50,6 +59,12 @@ export const ContextProvider = ({ children }) => {
         setDisplayCross,
         displayFinal,
         setDisplayFinal,
+        queryResults,
+        setQueryResults,
+        localStore,
+        setLocalStore,
+        history,
+        setHistory,
       }}
     >
       {children}
