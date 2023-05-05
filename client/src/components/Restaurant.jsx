@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Restaurant.css';
+import MapLocation from './MapLocation';
 
 function Restaurant({ data }) {
 
@@ -62,6 +63,7 @@ function Restaurant({ data }) {
             <h3 className="text-lg font-semibold mb-2 text-center">Map Location</h3>
             <p className="text-gray-600 text-center">Map showing the restaurant's location</p>
           </div>
+        // <MapLocation coordinates={data.coordinates} />
         )}
 
         {activeTab === 'reviews' && (
