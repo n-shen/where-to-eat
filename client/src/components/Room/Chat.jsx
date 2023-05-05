@@ -1,19 +1,57 @@
+import { useStateContext } from "../../contexts/ContextProvider";
+import { useEffect, useState } from "react";
+
 const Chat = ({ rid }) => {
+  const { socket } = useStateContext();
+  const [message, setMessage] = useState("");
+  // const [inMessages, setInMessages] = useState([]);
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    if (socket.connected) {
+      socket.on("chat-in", (message) => {
+        console.log("[C-chat-in]", "Partner: " + message);
+        setHistory((history) => [...history, "Partner: " + message]);
+      });
+    }
+  }, [socket]);
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    socket.emit("chat-out", message, rid);
+    console.log("[C-chat-out]", "You: " + message);
+    setHistory((history) => [...history, "You: " + message]);
+    setMessage("");
+  };
+
   return (
     <>
-      <div className="h-5/6 border-2">Screen</div>
+      <div className="h-[40vh]">
+        <div className="h-full overflow-auto w-full rounded-lg shadow">
+          <ul className="overflow-auto scroll-auto divide-y-1 divide-gray-100">
+            {history.map((d, idx) => (
+              <li className="text-left pl-2 text-gray-800" key={idx}>
+                {d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       <div className="h-1/6">
-        <form className="w-full">
+        <form className="w-full" onSubmit={handleSend}>
           <div className="flex items-center border-b border-teal-500 py-2">
             <input
               className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
               type="text"
+              id="chat-message"
+              required
+              value={message}
               placeholder="How is it going"
-              aria-label="Full name"
+              onChange={(e) => setMessage(e.target.value)}
             />
             <button
               className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-              type="button"
+              type="submit"
             >
               Send
             </button>

@@ -29,6 +29,17 @@ server.listen(process.env.PORT_NUM, () => {
 
 io.on("connection", (socket) => {
   console.log("IO new connection:", socket.id);
+
+  socket.on("chat-out", (msg, rid) => {
+    if (rid !== "") {
+      console.log("[S-chat-in]", msg, " from:", rid);
+      socket.to(rid).emit("chat-in", msg);
+    }
+  });
+
+  socket.on("join-room", (room) => {
+    socket.join(room);
+  });
 });
 
 // mongoose

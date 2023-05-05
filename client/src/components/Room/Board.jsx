@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Chat from "./Chat";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -10,7 +9,8 @@ const Board = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       setSocketId(socket.id);
-      socket.emit("chat", "hi there");
+      console.log(socket.id);
+      socket.emit("join-room", rid);
     }
   }, [socket]);
 
@@ -24,7 +24,7 @@ const Board = ({ rid }) => {
           <div className="shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-10 rounded-lg col-span-2 row-span-2">
             3
           </div>
-          <div className="shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-10 rounded-lg">
+          <div className="h-full shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-10 rounded-lg">
             <Chat rid={rid} />
           </div>
         </div>
