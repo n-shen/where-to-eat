@@ -19,14 +19,14 @@ const Intro = ({ rid }) => {
   useEffect(() => {
     if (socket.connected) {
       socket.on("game-ready-s", (message) => {
-        console.log(message);
+        // console.log(message);
         if (message === "start") {
-          console.log("starting game...");
+          // console.log("starting game...");
           setWaiting(false);
           setGameBegin(true);
           setPartnerReady(true);
         } else {
-          console.log("ending game...");
+          // console.log("ending game...");
           setWaiting(true);
           setGameBegin(false);
           setPartnerReady(false);
