@@ -41,12 +41,8 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />}></Route>
                   <Route path="/favorite" element={<Favorite />}></Route>
-                  {/* <Route path="/room" element={<RoomPage />}></Route>
-                  <Route path="/pairSession/:id" element={<PairSession />}></Route> */}
-                  <Route path="room">
-                    <Route index element={<RoomPage />} />
-                    <Route path=":id" element={<PairSession />} />
-                  </Route>
+                  <Route path="/room/:id" element={<RoomPage />}></Route>
+                  <Route path="/pairSession/:id" element={<PairSession />}></Route>
                 </Routes>
               </div>
             </div>

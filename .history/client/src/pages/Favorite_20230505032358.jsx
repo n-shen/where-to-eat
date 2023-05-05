@@ -35,12 +35,10 @@ export const FavoriteList = () => {
     {
       name: "Restaurant A",
       image: "https://example.com/restaurant-a.jpg",
-      isFavorite: true,
     },
     {
       name: "Restaurant B",
       image: "https://example.com/restaurant-b.jpg",
-      isFavorite: true,
     },
     {
       name: "Restaurant C",
@@ -50,20 +48,12 @@ export const FavoriteList = () => {
     {
       name: "Restaurant D",
       image: "https://example.com/restaurant-d.jpg",
-      isFavorite: true,
     },
     {
       name: "Restaurant E",
       image: "https://example.com/restaurant-e.jpg",
-      isFavorite: true,
     },
   ]);
-
-  const toggleFavorite = (index) => {
-    let newFavorites = [...favorites];
-    newFavorites[index].isFavorite = !newFavorites[index].isFavorite;
-    setFavorites(newFavorites);
-  };
 
   return (
     <ul className="">
@@ -74,16 +64,9 @@ export const FavoriteList = () => {
             alt={restaurant.name}
             className="mx-auto bg-black"
           />
-          <label htmlFor={`toggle-${index}`} className="cursor-pointer">
+          <h2 className="cursor-pointer">
             {restaurant.name}
-            <input
-              id={`toggle-${index}`}
-              type="checkbox"
-              className=""
-              checked={restaurant.isFavorite}
-              onChange={() => toggleFavorite(index)}
-            />
-          </label>
+          </h2>
         </li>
       ))}
     </ul>

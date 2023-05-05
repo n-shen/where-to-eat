@@ -9,8 +9,12 @@ const Favorite = () => {
 
   return (
     <div className={screenSize >= 900 ? "mt-0" : "mt-16"}>
-      <h1 className="text-center font-bold text-2xl mb-5">My Favorites</h1>
-      <FavoriteList />
+      <div className="flex justify-center">
+        <h1 className="text-2xl font-bold">My Favorite Restaurants</h1>
+      </div>
+      <div className="flex justify-center">
+        <FavoriteList />
+      </div>
       <h2 className="text-center font-bold">
         After deletion, all your data will be lost.
       </h2>
@@ -30,62 +34,52 @@ const Favorite = () => {
 
 export default Favorite;
 
-export const FavoriteList = () => {
+const FavoriteList = () => {
   const [favorites, setFavorites] = useState([
     {
       name: "Restaurant A",
       image: "https://example.com/restaurant-a.jpg",
-      isFavorite: true,
+      alt: "alt",
     },
     {
       name: "Restaurant B",
       image: "https://example.com/restaurant-b.jpg",
-      isFavorite: true,
+      alt: "alt",
     },
     {
       name: "Restaurant C",
       image: "https://example.com/restaurant-c.jpg",
-      isFavorite: true,
+      alt: "alt",
     },
     {
       name: "Restaurant D",
       image: "https://example.com/restaurant-d.jpg",
-      isFavorite: true,
+      alt: "alt",
     },
     {
       name: "Restaurant E",
       image: "https://example.com/restaurant-e.jpg",
-      isFavorite: true,
+      alt: "alt",
     },
   ]);
 
-  const toggleFavorite = (index) => {
-    let newFavorites = [...favorites];
-    newFavorites[index].isFavorite = !newFavorites[index].isFavorite;
-    setFavorites(newFavorites);
-  };
-
   return (
-    <ul className="">
-      {favorites.map((restaurant, index) => (
-        <li key={index} className="">
-          <img
-            src={restaurant.image}
-            alt={restaurant.name}
-            className="mx-auto bg-black"
-          />
-          <label htmlFor={`toggle-${index}`} className="cursor-pointer">
-            {restaurant.name}
-            <input
-              id={`toggle-${index}`}
-              type="checkbox"
-              className=""
-              checked={restaurant.isFavorite}
-              onChange={() => toggleFavorite(index)}
+    <div className="flex flex-wrap justify-center">
+      {favorites.map((favorite, index) => (
+        <div
+          key={index}
+          className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 p-2"
+        >
+          <div className="bg-white rounded-lg shadow-lg">
+            <img
+              src={favorite.image}
+              alt={favorite.alt}
+              className="rounded-t-lg w-full"
             />
-          </label>
-        </li>
+            <h3 className="font-bold text-center">{favorite.name}</h3>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };

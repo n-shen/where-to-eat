@@ -44,8 +44,8 @@ function App() {
                   {/* <Route path="/room" element={<RoomPage />}></Route>
                   <Route path="/pairSession/:id" element={<PairSession />}></Route> */}
                   <Route path="room">
-                    <Route index element={<RoomPage />} />
-                    <Route path=":id" element={<PairSession />} />
+                    <Route path="/" element={<RoomPage />}></Route>
+                    <Route path="/:id" element={<PairSession />}></Route>
                   </Route>
                 </Routes>
               </div>

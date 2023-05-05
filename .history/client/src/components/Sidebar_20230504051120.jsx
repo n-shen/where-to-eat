@@ -67,8 +67,8 @@ const Sidebar = () => {
                         </NavLink>
 
                         <NavLink
-                            to="/room"
-                            key="RoomPage"
+                            to="/customize"
+                            key="Customize"
                             onClick={handleCloseSideBar}
                             className={({ isActive }) => (isActive ? activeLink : normalLink)}
                         >

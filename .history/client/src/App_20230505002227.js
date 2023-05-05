@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Navbar, Sidebar, RoomPage, PairSession } from "./components";
+import { Navbar, Sidebar } from "./components";
 import {Favorite, Home} from "./pages";
 
 import { useStateContext } from "./contexts/ContextProvider";
@@ -41,12 +41,6 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />}></Route>
                   <Route path="/favorite" element={<Favorite />}></Route>
-                  {/* <Route path="/room" element={<RoomPage />}></Route>
-                  <Route path="/pairSession/:id" element={<PairSession />}></Route> */}
-                  <Route path="room">
-                    <Route index element={<RoomPage />} />
-                    <Route path=":id" element={<PairSession />} />
-                  </Route>
                 </Routes>
               </div>
             </div>

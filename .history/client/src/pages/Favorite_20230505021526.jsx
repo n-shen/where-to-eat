@@ -9,8 +9,8 @@ const Favorite = () => {
 
   return (
     <div className={screenSize >= 900 ? "mt-0" : "mt-16"}>
-      <h1 className="text-center font-bold text-2xl mb-5">My Favorites</h1>
-      <FavoriteList />
+        <h1 className="text-center font-bold text-2xl mb-5">My Favorites</h1>
+        <FavoriteLists />
       <h2 className="text-center font-bold">
         After deletion, all your data will be lost.
       </h2>
@@ -30,7 +30,7 @@ const Favorite = () => {
 
 export default Favorite;
 
-export const FavoriteList = () => {
+export const FavoriteLists = () => {
   const [favorites, setFavorites] = useState([
     {
       name: "Restaurant A",
@@ -74,10 +74,10 @@ export const FavoriteList = () => {
             alt={restaurant.name}
             className="mx-auto bg-black"
           />
-          <label htmlFor={`toggle-${index}`} className="cursor-pointer">
+          <label htmlFor="toggle" className="cursor-pointer">
             {restaurant.name}
             <input
-              id={`toggle-${index}`}
+              id="toggle"
               type="checkbox"
               className=""
               checked={restaurant.isFavorite}

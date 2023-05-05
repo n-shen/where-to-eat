@@ -75,15 +75,16 @@ export const FavoriteList = () => {
             className="mx-auto bg-black"
           />
           <label htmlFor={`toggle-${index}`} className="cursor-pointer">
-            {restaurant.name}
-            <input
-              id={`toggle-${index}`}
-              type="checkbox"
-              className=""
-              checked={restaurant.isFavorite}
-              onChange={() => toggleFavorite(index)}
-            />
-          </label>
+  {restaurant.name}
+  <input
+    id={`toggle-${index}`}
+    type="checkbox"
+    className=""
+    checked={restaurant.isFavorite}
+    onChange={() => toggleFavorite(index)}
+  />
+</label>
+
         </li>
       ))}
     </ul>
