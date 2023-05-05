@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
+import Select from "react-select";
 
 const Selection = ({ rid }) => {
   const {
@@ -10,9 +11,11 @@ const Selection = ({ rid }) => {
     setWaiting,
     setGameBegin,
     setGameIntroBegin,
+    localStore,
   } = useStateContext();
   const [selectValueOne, setSelectValueOne] = useState("");
   const [selectValueTwo, setSelectValueTwo] = useState("");
+  var technologyList = [];
 
   useEffect(() => {
     if (socket.connected) {
@@ -89,6 +92,14 @@ const Selection = ({ rid }) => {
     }
   };
 
+  useEffect(() => {
+    console.log(localStore);
+    if (localStore)
+      JSON.parse(localStore).forEach(function (element) {
+        technologyList.push({ label: element, value: element });
+      });
+  }, [localStore]);
+
   return (
     <>
       <div className="h-full p-5 border-2">
@@ -97,7 +108,7 @@ const Selection = ({ rid }) => {
             htmlFor="countries_multiple"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Select first option
+            Select first option * required
           </label>
           <select
             onChange={(e) => {
@@ -106,12 +117,16 @@ const Selection = ({ rid }) => {
             id="countries_multiple"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option>Select one</option>
-            <option value="Apples">Apples</option>
-            <option value="Grape">Grape</option>
-            <option value="Bananas">Bananas</option>
-            <option value="Blueberries">Blueberries</option>
-            <option value="Melons">Melons</option>
+            <option>* required but can be duplicated</option>
+            {localStore &&
+              JSON.parse(localStore).map((als) => {
+                const favd = JSON.parse(localStorage.getItem("fav_" + als));
+                return (
+                  <option key={favd[1]} value={favd[1]}>
+                    {favd[1]} | Rating: {favd[2]} | {favd[3]}{" "}
+                  </option>
+                );
+              })}
           </select>
         </div>
 
@@ -120,7 +135,7 @@ const Selection = ({ rid }) => {
             htmlFor="countries_multiple"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Select second option
+            Select second option * required
           </label>
           <select
             onChange={(e) => {
@@ -129,12 +144,16 @@ const Selection = ({ rid }) => {
             id="countries_multiple"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option>Select one</option>
-            <option value="Apples">Apples</option>
-            <option value="Grape">Grape</option>
-            <option value="Bananas">Bananas</option>
-            <option value="Blueberries">Blueberries</option>
-            <option value="Melons">Melons</option>
+            <option>* required name | rating | price</option>
+            {localStore &&
+              JSON.parse(localStore).map((als) => {
+                const favd = JSON.parse(localStorage.getItem("fav_" + als));
+                return (
+                  <option key={favd[1]} value={favd[1]}>
+                    {favd[1]} | Rating: {favd[2]} | {favd[3]}{" "}
+                  </option>
+                );
+              })}
           </select>
         </div>
         <button

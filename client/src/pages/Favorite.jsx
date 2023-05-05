@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Footer } from "../components";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
