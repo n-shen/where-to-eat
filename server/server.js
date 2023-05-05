@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
 import cors from "cors";
 import express from "express";
+import { Server } from "socket.io";
+import * as http from "http";
 import mongoose from "mongoose";
 
 dotenv.config();
@@ -15,11 +17,29 @@ app.use(express.json());
 import queryRouter from "./routes/queryRouter.js";
 app.use("/api/v1/query", queryRouter);
 
-app.listen(process.env.PORT_NUM, () => {
-    console.log(
-        "TL-Server is running without db connection on port: " +
-        process.env.PORT_NUM
-    );
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: "*" } });
+
+server.listen(process.env.PORT_NUM, () => {
+  console.log(
+    "TL-Server is running without db connection on port: " +
+      process.env.PORT_NUM
+  );
+});
+
+io.on("connection", (socket) => {
+  console.log("IO new connection:", socket.id);
+
+  socket.on("chat-out", (msg, rid) => {
+    if (rid !== "") {
+      console.log("[S-chat-in]", msg, " from:", rid);
+      socket.to(rid).emit("chat-in", msg);
+    }
+  });
+
+  socket.on("join-room", (room) => {
+    socket.join(room);
+  });
 });
 
 // mongoose
