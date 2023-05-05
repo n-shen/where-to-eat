@@ -75,6 +75,10 @@ io.on("connection", (socket) => {
   socket.on("remove-result", (room, message) => {
     socket.to(room).emit("remove-result-s", message);
   });
+
+  socket.on("end-session", (room, message) => {
+    socket.to(room).emit("end-session-s", message);
+  });
 });
 
 // mongoose

@@ -61,8 +61,6 @@ const Game = ({ rid }) => {
     }
   }, [socket]);
 
-  const allBuckets = localStorage.getItem("room-" + rid + "-collections");
-
   return (
     <>
       <section className="h-full bg-white dark:bg-gray-900 pt-10">
@@ -94,11 +92,14 @@ const Game = ({ rid }) => {
                 setPartnerAction("");
               } else if (partnerAction === "rock") {
                 console.log("result-draw");
+                setGameBegin(true);
                 setWaiting(false);
                 // inform partner
                 socket.emit("game-result", rid, "draw");
                 setPartnerAction("");
+                setWaiting(false);
               }
+              setPartnerReady(false);
             }
           }}
           className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
@@ -118,7 +119,6 @@ const Game = ({ rid }) => {
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
-                setPartnerAction("");
                 setWaiting(true);
               } else if (partnerAction === "paper") {
                 console.log("result-draw");
@@ -126,16 +126,16 @@ const Game = ({ rid }) => {
                 setGameBegin(true);
                 // inform partner
                 socket.emit("game-result", rid, "draw");
-                setPartnerAction("");
+                setWaiting(false);
               } else if (partnerAction === "rock") {
                 console.log("result-win");
                 setWaiting(false);
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "win");
-                setPartnerAction("");
                 setDisplayCross(true);
               }
+              setPartnerAction("");
             }
           }}
           className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
@@ -163,6 +163,7 @@ const Game = ({ rid }) => {
                 setGameBegin(true);
                 // inform partner
                 socket.emit("game-result", rid, "draw");
+                setWaiting(false);
                 setPartnerAction("");
               } else if (partnerAction === "paper") {
                 console.log("result-win");

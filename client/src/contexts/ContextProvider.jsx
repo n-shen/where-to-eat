@@ -21,6 +21,7 @@ export const ContextProvider = ({ children }) => {
   const [partnerReady, setPartnerReady] = useState(false);
   const [partnerAction, setPartnerAction] = useState("");
   const [displayCross, setDisplayCross] = useState(false);
+  const [displayFinal, setDisplayFinal] = useState("");
 
   return (
     <StateContext.Provider
@@ -47,6 +48,8 @@ export const ContextProvider = ({ children }) => {
         setPartnerAction,
         displayCross,
         setDisplayCross,
+        displayFinal,
+        setDisplayFinal,
       }}
     >
       {children}

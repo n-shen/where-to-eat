@@ -5,6 +5,7 @@ import Selection from "./Selection";
 import Intro from "./Intro";
 import Game from "./Game";
 import Cross from "./Cross";
+import Final from "./Final";
 
 const Board = ({ rid }) => {
   const {
@@ -20,6 +21,8 @@ const Board = ({ rid }) => {
     displayCross,
     setDisplayCross,
     setPartnerReady,
+    displayFinal,
+    setDisplayFinal,
   } = useStateContext();
   const [socketId, setSocketId] = useState("");
   const [isCapacityFull, setIsCapacityFull] = useState(false);
@@ -41,17 +44,20 @@ const Board = ({ rid }) => {
         setGameBegin(true);
         setPartnerReady(false);
         localStorage.setItem("room-" + rid + "-collections", message);
-        // if (message === "start") {
-        //   console.log("starting game...");
-        //   setWaiting(false);
-        //   setGameBegin(true);
-        //   setPartnerReady(true);
-        // } else {
-        //   console.log("ending game...");
-        //   setWaiting(true);
-        //   setGameBegin(false);
-        //   setPartnerReady(false);
-        // }
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket.connected) {
+      socket.on("end-session-s", (message) => {
+        console.log(message);
+        setWaiting(false);
+        setGameBegin(false);
+        setPartnerReady(false);
+        setSelectionBegin(false);
+        setDisplayCross(false);
+        setDisplayFinal(message);
       });
     }
   }, [socket]);
@@ -75,6 +81,7 @@ const Board = ({ rid }) => {
               {gameIntroBegin && <Intro rid={rid} />}
               {gameBegin && <Game rid={rid} />}
               {displayCross && <Cross rid={rid} />}
+              {displayFinal !== "" && <Final name={displayFinal} />}
             </div>
             <div className="h-full shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-2 rounded-lg">
               <Chat rid={rid} />

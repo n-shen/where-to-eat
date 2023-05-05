@@ -17,6 +17,8 @@ const Cross = ({ rid }) => {
     setPartnerReady,
     displayCross,
     setDisplayCross,
+    displayFinal,
+    setDisplayFinal,
   } = useStateContext();
 
   const allBuckets = localStorage.getItem("room-" + rid + "-collections");
@@ -113,26 +115,53 @@ const Cross = ({ rid }) => {
           )}
         </ul>
         <div className="pt-6">
-          <button
-            type="button"
-            onClick={() => {
-              let old = JSON.parse(allBuckets);
-              const idx = old.indexOf(selectedItem, 0);
-              if (idx > -1) old.splice(idx, 1);
-              console.log(old);
-              localStorage.setItem(
-                "room-" + rid + "-collections",
-                JSON.stringify(old)
-              );
-              setDisplayCross(false);
-              setGameBegin(true);
-              // inform partner game or final
-              socket.emit("remove-result", rid, JSON.stringify(old));
-            }}
-            className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-          >
-            Remove
-          </button>
+          {parsedBuckets[1] && (
+            <button
+              type="button"
+              onClick={() => {
+                let old = JSON.parse(allBuckets);
+                const idx = old.indexOf(selectedItem, 0);
+                if (idx > -1) old.splice(idx, 1);
+                console.log(old);
+                localStorage.setItem(
+                  "room-" + rid + "-collections",
+                  JSON.stringify(old)
+                );
+                setDisplayCross(false);
+                if (old[1]) {
+                  setGameBegin(true);
+                  // inform partner game or final
+                  socket.emit("remove-result", rid, JSON.stringify(old));
+                } else {
+                  setDisplayFinal(old[0]);
+                  console.log("go to", old[0]);
+                  socket.emit("end-session", rid, old[0]);
+                }
+              }}
+              className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            >
+              Remove
+            </button>
+          )}
+
+          {!parsedBuckets[1] && (
+            <div>
+              <p> Good job! You got it!</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setDisplayCross(false);
+                  setGameBegin(false);
+                  // inform partner game or final
+                  setPartnerReady(false);
+                  setSelectedItem("");
+                }}
+                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              >
+                Exit
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
