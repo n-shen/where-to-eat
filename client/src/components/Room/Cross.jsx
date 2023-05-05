@@ -162,6 +162,7 @@ const Cross = ({ rid }) => {
               </button>
             </div>
           )}
+          <p className="pt-5">You won this round! Please remove one~</p>
         </div>
       </div>
     </>

@@ -18,6 +18,8 @@ const Game = ({ rid }) => {
     setPartnerAction,
     displayCross,
     setDisplayCross,
+    history,
+    setHistory,
   } = useStateContext();
 
   useEffect(() => {
@@ -77,6 +79,11 @@ const Game = ({ rid }) => {
             } else {
               if (partnerAction === "scissor") {
                 console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setGameBegin(false);
                 setWaiting(false);
                 // inform partner
@@ -85,6 +92,11 @@ const Game = ({ rid }) => {
                 setDisplayCross(true);
               } else if (partnerAction === "paper") {
                 console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 setWaiting(true);
                 // inform partner
@@ -92,6 +104,8 @@ const Game = ({ rid }) => {
                 setPartnerAction("");
               } else if (partnerAction === "rock") {
                 console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setGameBegin(true);
                 setWaiting(false);
                 // inform partner
@@ -116,12 +130,19 @@ const Game = ({ rid }) => {
             } else {
               if (partnerAction === "scissor") {
                 console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
                 setWaiting(true);
               } else if (partnerAction === "paper") {
                 console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setWaiting(false);
                 setGameBegin(true);
                 // inform partner
@@ -129,6 +150,11 @@ const Game = ({ rid }) => {
                 setWaiting(false);
               } else if (partnerAction === "rock") {
                 console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setWaiting(false);
                 setGameBegin(false);
                 // inform partner
@@ -152,6 +178,11 @@ const Game = ({ rid }) => {
             } else {
               if (partnerAction === "rock") {
                 console.log("result-lost");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You lost!",
+                  ]);
                 setGameBegin(false);
                 // inform partner
                 socket.emit("game-result", rid, "lost");
@@ -159,6 +190,8 @@ const Game = ({ rid }) => {
                 setWaiting(true);
               } else if (partnerAction === "scissor") {
                 console.log("result-draw");
+                if (history)
+                  setHistory((history) => [...history, ">> server >> Draw!"]);
                 setWaiting(false);
                 setGameBegin(true);
                 // inform partner
@@ -167,6 +200,11 @@ const Game = ({ rid }) => {
                 setPartnerAction("");
               } else if (partnerAction === "paper") {
                 console.log("result-win");
+                if (history)
+                  setHistory((history) => [
+                    ...history,
+                    ">> server >> You win!",
+                  ]);
                 setWaiting(false);
                 setGameBegin(false);
                 // inform partner

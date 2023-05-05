@@ -2,11 +2,17 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect, useState } from "react";
 
 const Chat = ({ rid }) => {
-  const { socket, selectionBegin, setSelectionBegin, waiting, setWaiting } =
-    useStateContext();
+  const {
+    socket,
+    selectionBegin,
+    setSelectionBegin,
+    waiting,
+    setWaiting,
+    history,
+    setHistory,
+  } = useStateContext();
   const [message, setMessage] = useState("");
   // const [inMessages, setInMessages] = useState([]);
-  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     if (socket.connected) {
@@ -27,7 +33,7 @@ const Chat = ({ rid }) => {
         console.log(message);
         if (message === "Server: partner joined the room!") {
           socket.emit("chat-out", "Got you, let's begin!", rid);
-          setHistory((history) => ["[Me]: Got you, let's begin!"]);
+          setHistory((history) => [...history, "[Me]: Got you, let's begin!"]);
           setWaiting(false);
           setSelectionBegin(true);
         }
@@ -48,11 +54,12 @@ const Chat = ({ rid }) => {
       <div className="h-[40vh]">
         <div className="h-full overflow-auto w-full rounded-lg shadow">
           <ul className="overflow-auto scroll-auto divide-y-1 divide-gray-100">
-            {history.map((d, idx) => (
-              <li className="text-left text-sm pl-2 text-blue-700" key={idx}>
-                {d}
-              </li>
-            ))}
+            {history &&
+              history.map((d, idx) => (
+                <li className="text-left text-sm pl-2 text-blue-700" key={idx}>
+                  {d}
+                </li>
+              ))}
           </ul>
         </div>
       </div>
