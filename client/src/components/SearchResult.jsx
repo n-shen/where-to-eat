@@ -15,7 +15,12 @@ const SearchResult = () => {
         setActiveLink(true);
     };
 
-    const cloud_ctms = [{"title": "ABC restaurant", "location": "123 Abc Ave"}]
+    const cloud_ctms = [{"thumbnail" : "./images/pizza-cartoon.jpeg", "title": "Dominos", "distance": "12 miles", "location": "123 Abc Ave"},
+                        {"thumbnail" : "./images/burger-cartoon.png", "title": "Burger King", "distance": "12 miles", "location": "123 Abc Ave"},
+                        {"thumbnail" : "./images/cupcake-cartoon.jpeg", "title": "Gigi's Cupcakes", "distance": "12 miles", "location": "123 Abc Ave"},
+                        {"thumbnail" : "./images/hotdog-cartoon.gif", "title": "Famous Hotdogs", "distance": "12 miles", "location": "123 Abc Ave"},
+                        {"thumbnail" : "./images/taco-cartoon.jpeg", "title": "Taco Bell", "distance": "12 miles", "location": "123 Abc Ave"},
+                        {"thumbnail" : "./images/coffee-shop-cartoon.png", "title": "Foxtail Coffee", "distance": "12 miles", "location": "123 Abc Ave"},]
 
     return (
         <div className="flex w-full justify-center">
@@ -42,7 +47,7 @@ const SearchResult = () => {
                             </svg>
                             <span className="sr-only">Info</span>
                             <div className="ml-3 text-sm font-medium">
-                                Restaruant has been added to favorites! (LocalStorage):{" "}
+                                Restaurant has been added to favorites! (LocalStorage):{" "}
                                 <a
                                     target="_blank"
                                     href={sharingUrl}
@@ -86,10 +91,16 @@ const SearchResult = () => {
                             <th scope="col" className="px-6 py-3">
                                 #
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
+                                Picture
+                            </th>
+                            <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
                                 Title
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
+                                Distance
+                            </th>
+                            <th style={{textAlign: "center"}} scope="col" className="px-6 py-3">
                                 Location
                             </th>
                         </tr>
@@ -108,8 +119,22 @@ const SearchResult = () => {
                                         >
                                             {index + 1}
                                         </th>
-                                        <td className="px-6 py-4">{val.title}</td>
-                                        <td className="px-6 py-4">{val.location}</td>
+                                        <td style={{ width: '100px', textAlign: 'center' }}>
+                                            <img
+                                                src={val.thumbnail}
+                                                alt="Image description"
+                                                style={{
+                                                display: 'inline-block',
+                                                width: '30px',
+                                                height: '30px',
+                                                borderRadius: '50%',
+                                                objectFit: 'cover',
+                                                }}
+                                            />
+                                        </td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.title}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.distance}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.location}</td>
                                         <td className="px-1 py-4">
                                             <button
                                                 onClick={() => handleSharing(val)}
