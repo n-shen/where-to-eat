@@ -23,6 +23,8 @@ export const ContextProvider = ({ children }) => {
   const [displayCross, setDisplayCross] = useState(false);
   const [displayFinal, setDisplayFinal] = useState("");
 
+  const [localStore, setLocalStore] = useState(null);
+
   const [queryResults, setQueryResults] = useState(null);
 
   return (
@@ -54,6 +56,8 @@ export const ContextProvider = ({ children }) => {
         setDisplayFinal,
         queryResults,
         setQueryResults,
+        localStore,
+        setLocalStore,
       }}
     >
       {children}

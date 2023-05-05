@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { ImLink } from "react-icons/im";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 
 const SearchResult = () => {
-  const { shared_info, queryResults, setQueryResults } = useStateContext();
+  const {
+    shared_info,
+    queryResults,
+    setQueryResults,
+    localStore,
+    setLocalStore,
+  } = useStateContext();
   const baseURL = shared_info.baseURL;
 
-  const [sharingUrl, setSharingUrl] = useState("/");
   const [activeLink, setActiveLink] = useState(false);
+
+  useEffect(() => {
+    let fav = localStorage.getItem("fav");
+    if (!fav) localStorage.setItem("fav", JSON.stringify([]));
+    setLocalStore(fav);
+  }, [localStore]);
 
   const handleSharing = (ele) => {
     setActiveLink(true);
@@ -144,6 +156,50 @@ const SearchResult = () => {
                         <NavLink to={val.url} target="_blank">
                           <ImLink />
                         </NavLink>
+                      </td>
+
+                      <td className="px-1 py-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            console.log("saving fav:", val["alias"]);
+                            let fav = localStorage.getItem("fav");
+                            let fav_docker = [];
+                            if (!fav)
+                              localStorage.setItem("fav", JSON.stringify([]));
+                            else fav_docker = JSON.parse(fav);
+                            console.log(
+                              "before",
+                              JSON.parse(localStorage.getItem("fav"))
+                            );
+
+                            try {
+                              if (!localStore.includes(val["alias"])) {
+                                fav_docker.push(val["alias"]);
+                                localStorage.setItem(
+                                  "fav",
+                                  JSON.stringify(fav_docker)
+                                );
+                                setLocalStore(fav_docker);
+                              }
+                              localStorage.setItem(
+                                "fav_" + val["alias"],
+                                JSON.stringify([
+                                  val["image_url"],
+                                  val["name"],
+                                  val["rating"],
+                                  val["price"],
+                                ])
+                              );
+                            } catch (e) {}
+                          }}
+                        >
+                          {!localStore.includes(val["alias"]) ? (
+                            <FcLikePlaceholder />
+                          ) : (
+                            <FcLike />
+                          )}
+                        </button>
                       </td>
                     </tr>
                   );
