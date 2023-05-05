@@ -51,8 +51,8 @@ const Chat = ({ rid }) => {
 
   return (
     <>
-      <div className="h-[40vh]">
-        <div className="h-full overflow-auto w-full rounded-lg shadow">
+      <div className="h-[50vh]">
+        <div className="h-full overflow-auto w-full rounded-lg">
           <ul className="overflow-auto scroll-auto divide-y-1 divide-gray-100">
             {history &&
               history.map((d, idx) => (

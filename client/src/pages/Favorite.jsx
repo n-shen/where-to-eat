@@ -102,7 +102,10 @@ const Favorite = () => {
           </tbody>
         </table>
       </div>
-
+      <p className="px-10">
+        * We do not store any of data. All data showing above can be deleted by
+        clearing this website's history.
+      </p>
       <Footer />
     </div>
   );
