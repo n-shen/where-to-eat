@@ -2,7 +2,8 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect, useState } from "react";
 
 const Chat = ({ rid }) => {
-  const { socket } = useStateContext();
+  const { socket, selectionBegin, setSelectionBegin, waiting, setWaiting } =
+    useStateContext();
   const [message, setMessage] = useState("");
   // const [inMessages, setInMessages] = useState([]);
   const [history, setHistory] = useState([]);
@@ -11,7 +12,25 @@ const Chat = ({ rid }) => {
     if (socket.connected) {
       socket.on("chat-in", (message) => {
         console.log("[C-chat-in]", "Partner: " + message);
+        if (message === "Got you, let's begin!") {
+          setWaiting(false);
+          setSelectionBegin(true);
+        }
         setHistory((history) => [...history, "Partner: " + message]);
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket.connected) {
+      socket.on("server-notice", (message) => {
+        console.log(message);
+        if (message === "Server: partner joined the room!") {
+          socket.emit("chat-out", "Got you, let's begin!", rid);
+          setHistory((history) => ["[Me]: Got you, let's begin!"]);
+          setWaiting(false);
+          setSelectionBegin(true);
+        }
       });
     }
   }, [socket]);
@@ -19,8 +38,8 @@ const Chat = ({ rid }) => {
   const handleSend = (e) => {
     e.preventDefault();
     socket.emit("chat-out", message, rid);
-    console.log("[C-chat-out]", "You: " + message);
-    setHistory((history) => [...history, "You: " + message]);
+    console.log("[C-chat-out]", "[Me]: " + message);
+    setHistory((history) => [...history, "[Me]: " + message]);
     setMessage("");
   };
 
@@ -30,7 +49,7 @@ const Chat = ({ rid }) => {
         <div className="h-full overflow-auto w-full rounded-lg shadow">
           <ul className="overflow-auto scroll-auto divide-y-1 divide-gray-100">
             {history.map((d, idx) => (
-              <li className="text-left pl-2 text-gray-800" key={idx}>
+              <li className="text-left text-sm pl-2 text-blue-700" key={idx}>
                 {d}
               </li>
             ))}

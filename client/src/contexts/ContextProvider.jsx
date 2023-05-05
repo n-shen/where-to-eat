@@ -14,6 +14,9 @@ export const ContextProvider = ({ children }) => {
   const [screenSize, setScreenSize] = useState(undefined);
   const [activeMenu, setActiveMenu] = useState(true);
   const [userProfile, setUserProfile] = useState(undefined);
+  const [gameBegin, setGameBegin] = useState(false);
+  const [selectionBegin, setSelectionBegin] = useState(false);
+  const [waiting, setWaiting] = useState(false);
 
   return (
     <StateContext.Provider
@@ -26,6 +29,10 @@ export const ContextProvider = ({ children }) => {
         setActiveMenu,
         screenSize,
         setScreenSize,
+        selectionBegin,
+        setSelectionBegin,
+        waiting,
+        setWaiting,
       }}
     >
       {children}

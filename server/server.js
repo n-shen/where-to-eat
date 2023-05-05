@@ -39,6 +39,25 @@ io.on("connection", (socket) => {
 
   socket.on("join-room", (room) => {
     socket.join(room);
+    if (
+      io.sockets.adapter.rooms.get(room) &&
+      io.sockets.adapter.rooms.get(room).size >= 2
+    ) {
+      console.log(
+        "partner joined!",
+        io.sockets.adapter.rooms.get(room).size,
+        room
+      );
+      socket.to(room).emit("server-notice", "Server: partner joined the room!");
+    }
+  });
+
+  socket.on("ex-selection", (room, collection) => {
+    socket.to(room).emit("ex-selection-store", collection);
+  });
+
+  socket.on("done-selection", (room, collection) => {
+    socket.to(room).emit("ex-selection-done", collection);
   });
 });
 
