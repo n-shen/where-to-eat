@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Intro = ({ rid }) => {
-  const [roomSession, setRoomSession] = useState(false);
   const {
     socket,
     selectionBegin,
@@ -13,7 +12,28 @@ const Intro = ({ rid }) => {
     setGameBegin,
     gameIntroBegin,
     setGameIntroBegin,
+    partnerReady,
+    setPartnerReady,
   } = useStateContext();
+
+  useEffect(() => {
+    if (socket.connected) {
+      socket.on("game-ready-s", (message) => {
+        console.log(message);
+        if (message === "start") {
+          console.log("starting game...");
+          setWaiting(false);
+          setGameBegin(true);
+          setPartnerReady(true);
+        } else {
+          console.log("ending game...");
+          setWaiting(true);
+          setGameBegin(false);
+          setPartnerReady(false);
+        }
+      });
+    }
+  }, [socket]);
 
   const allBuckets = localStorage.getItem("room-" + rid + "-collections");
 
@@ -23,7 +43,7 @@ const Intro = ({ rid }) => {
         <div className="h-full py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
           <h1 className="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
             <span className="text-blue-500">
-              Let's play Rock paper scissors!
+              Let's play Rock Paper Scissors!
             </span>
           </h1>
           <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
@@ -32,8 +52,13 @@ const Intro = ({ rid }) => {
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 pb-5">
             <button
               onClick={() => {
-                setGameBegin(true);
                 setGameIntroBegin(false);
+                socket.emit("game-ready", rid, "start");
+                if (partnerReady) {
+                  setGameBegin(true);
+                } else {
+                  setWaiting(true);
+                }
               }}
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
             >

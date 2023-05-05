@@ -18,6 +18,8 @@ export const ContextProvider = ({ children }) => {
   const [gameIntroBegin, setGameIntroBegin] = useState(false);
   const [selectionBegin, setSelectionBegin] = useState(false);
   const [waiting, setWaiting] = useState(false);
+  const [partnerReady, setPartnerReady] = useState(false);
+  const [partnerAction, setPartnerAction] = useState("");
 
   return (
     <StateContext.Provider
@@ -38,6 +40,10 @@ export const ContextProvider = ({ children }) => {
         setGameIntroBegin,
         gameBegin,
         setGameBegin,
+        partnerReady,
+        setPartnerReady,
+        partnerAction,
+        setPartnerAction,
       }}
     >
       {children}

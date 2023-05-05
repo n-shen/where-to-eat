@@ -59,6 +59,18 @@ io.on("connection", (socket) => {
   socket.on("done-selection", (room, collection) => {
     socket.to(room).emit("ex-selection-done", collection);
   });
+
+  socket.on("game-ready", (room, message) => {
+    socket.to(room).emit("game-ready-s", message);
+  });
+
+  socket.on("game-action", (room, message) => {
+    socket.to(room).emit("game-action-s", message);
+  });
+
+  socket.on("game-result", (room, message) => {
+    socket.to(room).emit("game-result-s", message);
+  });
 });
 
 // mongoose

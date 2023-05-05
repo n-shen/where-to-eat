@@ -3,6 +3,7 @@ import Chat from "./Chat";
 import { useStateContext } from "../../contexts/ContextProvider";
 import Selection from "./Selection";
 import Intro from "./Intro";
+import Game from "./Game";
 
 const Board = ({ rid }) => {
   const {
@@ -45,6 +46,7 @@ const Board = ({ rid }) => {
                 </div>
               )}
               {gameIntroBegin && <Intro rid={rid} />}
+              {gameBegin && <Game rid={rid} />}
             </div>
             <div className="h-full shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-2 rounded-lg">
               <Chat rid={rid} />
