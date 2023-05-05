@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Selection = ({ rid }) => {
-  const { socket, selectionBegin, setSelectionBegin, waiting, setWaiting } =
-    useStateContext();
+  const {
+    socket,
+    selectionBegin,
+    setSelectionBegin,
+    waiting,
+    setWaiting,
+    setGameBegin,
+    setGameIntroBegin,
+  } = useStateContext();
   const [selectValueOne, setSelectValueOne] = useState("");
   const [selectValueTwo, setSelectValueTwo] = useState("");
 
@@ -30,6 +37,7 @@ const Selection = ({ rid }) => {
             JSON.parse(message)
           );
           setWaiting(false);
+          setGameIntroBegin(true);
         }
       });
     }
@@ -39,6 +47,7 @@ const Selection = ({ rid }) => {
     console.log("submitting..");
     if (selectValueOne && selectValueTwo) {
       console.log("selected: ", [selectValueOne, selectValueTwo]);
+
       const lsp = localStorage.getItem("room-" + rid + "-collections");
       if (lsp) {
         console.log("ls-partners: ", JSON.parse(lsp));
@@ -56,6 +65,7 @@ const Selection = ({ rid }) => {
         );
         setWaiting(false);
         setSelectionBegin(false);
+        setGameIntroBegin(true);
       } else {
         localStorage.setItem(
           "room-" + rid + "-collections",

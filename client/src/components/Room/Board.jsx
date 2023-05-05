@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 import Chat from "./Chat";
 import { useStateContext } from "../../contexts/ContextProvider";
 import Selection from "./Selection";
+import Intro from "./Intro";
 
 const Board = ({ rid }) => {
-  const { socket, selectionBegin, setSelectionBegin, waiting, setWaiting } =
-    useStateContext();
+  const {
+    socket,
+    selectionBegin,
+    setSelectionBegin,
+    waiting,
+    setWaiting,
+    gameBegin,
+    setGameBegin,
+    gameIntroBegin,
+    setGameIntroBegin,
+  } = useStateContext();
   const [socketId, setSocketId] = useState("");
   const [isCapacityFull, setIsCapacityFull] = useState(false);
 
@@ -29,7 +39,12 @@ const Board = ({ rid }) => {
             </div>
             <div className="shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-2 rounded-lg col-span-2 row-span-2">
               {selectionBegin && <Selection rid={rid} />}
-              {waiting && <p>Waiting for your partner...</p>}
+              {waiting && (
+                <div>
+                  <p>Waiting for your partner...</p>
+                </div>
+              )}
+              {gameIntroBegin && <Intro rid={rid} />}
             </div>
             <div className="h-full shadow-lg bg-gray-100 text-green-500 text-lg font-bold text-center p-2 rounded-lg">
               <Chat rid={rid} />

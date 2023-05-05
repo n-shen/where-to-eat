@@ -15,6 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [userProfile, setUserProfile] = useState(undefined);
   const [gameBegin, setGameBegin] = useState(false);
+  const [gameIntroBegin, setGameIntroBegin] = useState(false);
   const [selectionBegin, setSelectionBegin] = useState(false);
   const [waiting, setWaiting] = useState(false);
 
@@ -33,6 +34,10 @@ export const ContextProvider = ({ children }) => {
         setSelectionBegin,
         waiting,
         setWaiting,
+        gameIntroBegin,
+        setGameIntroBegin,
+        gameBegin,
+        setGameBegin,
       }}
     >
       {children}
