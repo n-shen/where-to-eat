@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { ImLink } from "react-icons/im";
+import RestaurantModal from "./RestaurantModal";
 
 import axios from "axios";
 
@@ -12,6 +13,18 @@ const SearchResult = ({ restaurants }) => {
 
     const [sharingUrl, setSharingUrl] = useState("/");
     const [activeLink, setActiveLink] = useState(false);
+    const [restaurantData, setRestaurantData] = useState({});
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleLinkClick = (data) => {
+        setIsModalOpen(true);
+        setRestaurantData(data);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     const handleSharing = (ele) => {
         setActiveLink(true);
@@ -26,6 +39,9 @@ const SearchResult = ({ restaurants }) => {
 
     return (
         <div className="flex w-full justify-center">
+
+            {isModalOpen && <RestaurantModal data={restaurantData} onClose={handleCloseModal} />}
+
             {restaurants && restaurants.length > 0 && (
                 <div className="w-10/12 relative overflow-x-auto">
                     {activeLink && (
@@ -134,7 +150,23 @@ const SearchResult = ({ restaurants }) => {
                                                 }}
                                             />
                                         </td>
-                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.name}</td>
+                                        <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">
+                                            <a 
+                                                href="#" 
+                                                onClick={() => {handleLinkClick({
+                                                    "name": val.name,
+                                                    "address" : val.location.address1,
+                                                    "url": val.url,
+                                                    "thumbnail": val.image_url,
+                                                    "phone": val.display_phone,
+                                                    "rating": val.rating,
+                                                    "price": val.price,
+                                                    "category": val.categories
+
+                                                })}}>
+                                                    {val.name}
+                                                </a>
+                                        </td>
                                         <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.distance}</td>
                                         <td style={{textAlign: "center", fontWeight: "bold"}} className="px-6 py-4">{val.location.address1}</td>
                                         <td className="px-1 py-4">
