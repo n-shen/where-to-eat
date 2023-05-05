@@ -20,7 +20,7 @@ const SearchForm = () => {
     const [distance, setDistance] = useState(0);
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState(cities);
-    const [enteredLocation, setEnteredLocation] = useState("none");
+    const [enteredLocation, setEnteredLocation] = useState("");
     const [autodetect, setAutodetect] = useState(false);
     const [description, setDescription] = useState(null);
     const [error, setError] = useState("");
@@ -56,7 +56,9 @@ const SearchForm = () => {
     //         });
     // };
 
-    const onClickSave = () => {
+    const onClickSave = (event) => {
+        event.preventDefault();
+        setRestaurants([]);
         axios.post("http://localhost:8080/api/v1/query/get", {
             "location": enteredLocation,
             "keyword": keyword,
@@ -76,12 +78,13 @@ const SearchForm = () => {
     }
 
     const onClickClear = () => {
+        console.log("Inside on click clear function");
         setRestaurants([]);
         setMessage("");
         setError("");
         setKeyword("");
         setDistance("");
-        setLocation("");
+        setEnteredLocation("");
     }
 
     const handleAutodetect = () => {
@@ -106,8 +109,7 @@ const SearchForm = () => {
       };
 
     const handleTypeSelect = e => {
-        console.log(e)
-        console.log(e.value)
+
         setEnteredLocation(e.label);
     };
 
@@ -192,9 +194,10 @@ const SearchForm = () => {
                                 <Select
                                     options={cityOptions}
                                     onChange={handleTypeSelect}
-                                    value={cityOptions.filter(function(option) {
-                                        return option.value === enteredLocation;
-                                      })}
+                                    // value={cityOptions.filter(function(option) {
+                                    //     return option.value === enteredLocation;
+                                    //   })}
+                                    value={{label : enteredLocation}}
                                     searchable="true"
                                     placeholder={"Enter City"}
                                 />
@@ -216,13 +219,13 @@ const SearchForm = () => {
                                 type="submit"
                                 disabled={loading}
                                 className="flex w-1/3 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                onClick={() => {onClickSave()}}
+                                onClick={(event) => {onClickSave(event)}}
                                 >
                                 Save
                             </button>
                             <button
                                 type="reset"
-                                onClick={() => {onClickClear()}}
+                                onClick={onClickClear}
                                 disabled={loading}
                                 className="flex ml-3 w-1/3 justify-center rounded-md bg-slate-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
