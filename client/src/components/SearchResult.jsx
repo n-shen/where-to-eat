@@ -189,6 +189,7 @@ const SearchResult = () => {
                                   val["name"],
                                   val["rating"],
                                   val["price"],
+                                  val["url"],
                                 ])
                               );
                             } catch (e) {}
